@@ -3,1326 +3,520 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة متابعة الخطة التشغيلية — جمعية يد ترعاك 2026م</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<title>تقرير مبيعات مؤسسة رهيف</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --primary: #1A6B5A;
-  --primary-light: #2E9E82;
-  --primary-50: #E8F4F0;
-  --accent: #C8A84B;
-  --accent-light: #F0D882;
-  --blue: #1D6FB5;
-  --blue-light: #378ADD;
-  --amber: #BA7517;
-  --purple: #7C3AED;
-  --red: #DC2626;
-  --success: #0F6E56;
-  --warning: #854F0B;
-  --danger: #A32D2D;
-  --bg: #F4F7F6;
-  --bg-card: #FFFFFF;
-  --bg-sidebar: #1A2E2B;
-  --text-primary: #1C2B2A;
-  --text-secondary: #5A6E6B;
-  --text-muted: #8FA09D;
-  --border: rgba(26, 107, 90, 0.12);
-  --border-strong: rgba(26, 107, 90, 0.22);
-  --shadow: 0 2px 16px rgba(26,107,90,0.08);
-  --shadow-md: 0 4px 24px rgba(26,107,90,0.12);
-  --radius: 12px;
-  --radius-sm: 8px;
-  --sidebar-w: 240px;
-  --font: 'Cairo', sans-serif;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text-primary);
-  min-height: 100vh;
-  display: flex;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* ── SIDEBAR ── */
-.sidebar {
-  width: var(--sidebar-w);
-  background: var(--bg-sidebar);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.sidebar-logo {
-  padding: 24px 20px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-.logo-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px; height: 44px;
-  background: var(--primary);
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.logo-badge svg { width: 24px; height: 24px; fill: white; }
-
-.sidebar-logo h2 {
-  font-size: 13px;
-  font-weight: 700;
-  color: #FFFFFF;
-  line-height: 1.4;
-}
-
-.sidebar-logo p {
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  margin-top: 2px;
-}
-
-.sidebar-year {
-  display: inline-block;
-  background: var(--accent);
-  color: #1C1000;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-top: 6px;
-}
-
-.nav-section {
-  padding: 16px 12px 8px;
-}
-
-.nav-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.08em;
-  padding: 0 8px;
-  margin-bottom: 6px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  color: rgba(255,255,255,0.55);
-  font-size: 13px;
-  font-weight: 500;
-  transition: all 0.18s;
-  margin-bottom: 2px;
-  border: none;
-  background: none;
-  width: 100%;
-  text-align: right;
-}
-
-.nav-item:hover { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.85); }
-.nav-item.active { background: var(--primary); color: white; }
-
-.nav-item .nav-icon {
-  width: 18px; height: 18px;
-  opacity: 0.8;
-  flex-shrink: 0;
-}
-
-.sidebar-footer {
-  margin-top: auto;
-  padding: 16px;
-  border-top: 1px solid rgba(255,255,255,0.07);
-}
-
-.reg-badge {
-  font-size: 10px;
-  color: rgba(255,255,255,0.25);
-  line-height: 1.5;
-}
-
-/* ── MAIN ── */
-.main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.topbar {
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border);
-  padding: 14px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.topbar-title {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.topbar-sub {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-top: 1px;
-}
-
-.topbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  border-radius: 99px;
-  font-size: 12px;
-  font-weight: 600;
-  background: rgba(15, 110, 86, 0.1);
-  color: var(--success);
-}
-
-.status-pill::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--success);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
-
-.btn {
-  padding: 7px 16px;
-  border-radius: var(--radius-sm);
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  border: 1px solid var(--border-strong);
-  background: transparent;
-  color: var(--text-secondary);
-  transition: all 0.15s;
-}
-
-.btn:hover { background: var(--primary-50); color: var(--primary); border-color: var(--primary); }
-.btn-primary { background: var(--primary); color: white; border-color: var(--primary); }
-.btn-primary:hover { background: var(--primary-light); color: white; }
-.btn-danger { border-color: rgba(220,38,38,0.3); color: var(--danger); }
-.btn-danger:hover { background: rgba(220,38,38,0.08); }
-
-/* ── CONTENT ── */
-.content {
-  padding: 24px 28px;
-  flex: 1;
-}
-
-.page { display: none; }
-.page.active { display: block; }
-
-/* ── METRIC CARDS ── */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-  margin-bottom: 22px;
-}
-
-@media (max-width: 1200px) { .metrics-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 800px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
-
-.metric-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-  position: relative;
-  overflow: hidden;
-  transition: box-shadow 0.2s;
-}
-
-.metric-card:hover { box-shadow: var(--shadow-md); }
-
-.metric-card::before {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--accent-color, var(--primary));
-}
-
-.metric-label {
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 500;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.metric-value {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.metric-sub {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-.metric-change {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 7px;
-  border-radius: 99px;
-  margin-top: 6px;
-}
-
-.metric-change.up { background: rgba(15,110,86,0.1); color: var(--success); }
-.metric-change.down { background: rgba(163,45,45,0.1); color: var(--danger); }
-.metric-change.neutral { background: rgba(186,117,23,0.1); color: var(--amber); }
-
-/* ── CARDS ── */
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  box-shadow: var(--shadow);
-}
-
-.card-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.card-title::before {
-  content: '';
-  width: 3px; height: 14px;
-  background: var(--primary);
-  border-radius: 2px;
-}
-
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
-.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; margin-bottom: 18px; }
-@media (max-width: 900px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
-
-/* ── AXIS CARDS ── */
-.axis-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
-
-.axis-item {
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-
-.axis-item:hover { border-color: var(--border-strong); box-shadow: var(--shadow); }
-
-.axis-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-
-.axis-name { font-size: 12px; font-weight: 600; color: var(--text-primary); }
-.axis-period { font-size: 11px; color: var(--text-muted); }
-
-.axis-pct { font-size: 20px; font-weight: 700; }
-
-.progress-track {
-  width: 100%;
-  height: 7px;
-  background: var(--bg);
-  border-radius: 99px;
-  overflow: hidden;
-  margin-bottom: 6px;
-}
-
-.progress-fill {
-  height: 100%;
-  border-radius: 99px;
-  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
-}
-
-.axis-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-/* ── PROGRAM BARS ── */
-.prog-list { display: flex; flex-direction: column; gap: 10px; }
-
-.prog-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.prog-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.prog-name {
-  font-size: 12px;
-  color: var(--text-primary);
-  min-width: 150px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: 500;
-}
-
-.prog-track {
-  flex: 1;
-  height: 20px;
-  background: var(--bg);
-  border-radius: 4px;
-  position: relative;
-  overflow: hidden;
-}
-
-.prog-plan-bar {
-  position: absolute;
-  top: 0; right: 0;
-  width: 100%; height: 100%;
-  opacity: 0.15;
-  border-radius: 4px;
-}
-
-.prog-actual-bar {
-  position: absolute;
-  top: 0; right: 0;
-  height: 100%;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-left: 6px;
-  transition: width 0.6s ease;
-}
-
-.prog-pct {
-  font-size: 11px;
-  font-weight: 700;
-  min-width: 38px;
-  text-align: left;
-}
-
-.prog-amt {
-  font-size: 11px;
-  color: var(--text-muted);
-  min-width: 80px;
-  text-align: left;
-  white-space: nowrap;
-}
-
-/* ── TABLE ── */
-.table-wrap { overflow-x: auto; }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-
-thead th {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  padding: 8px 12px;
-  border-bottom: 2px solid var(--border);
-  text-align: right;
-  white-space: nowrap;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  background: var(--bg);
-}
-
-tbody td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--border);
-  color: var(--text-primary);
-  text-align: right;
-  vertical-align: middle;
-}
-
-tbody tr:last-child td { border-bottom: none; }
-tbody tr:hover td { background: var(--primary-50); }
-
-tfoot td {
-  padding: 10px 12px;
-  font-weight: 700;
-  background: var(--primary-50);
-  color: var(--text-primary);
-  text-align: right;
-  border-top: 2px solid var(--border-strong);
-}
-
-/* ── CHIPS ── */
-.chip {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 99px;
-  white-space: nowrap;
-}
-.chip-g { background: rgba(15,110,86,0.12); color: var(--success); }
-.chip-a { background: rgba(186,117,23,0.12); color: var(--amber); }
-.chip-r { background: rgba(163,45,45,0.12); color: var(--danger); }
-.chip-n { background: rgba(90,110,107,0.1); color: var(--text-secondary); }
-.chip-b { background: rgba(29,111,181,0.1); color: var(--blue); }
-
-/* ── MINI PROGRESS ── */
-.mini-prog {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.mini-track {
-  width: 55px; height: 5px;
-  background: var(--bg);
-  border-radius: 99px;
-  overflow: hidden;
-}
-.mini-fill { height: 100%; border-radius: 99px; }
-
-/* ── ALERTS ── */
-.alert {
-  padding: 10px 14px;
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  border-right: 4px solid;
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-.alert-warn { background: rgba(186,117,23,0.08); border-color: var(--amber); color: #5C3800; }
-.alert-ok { background: rgba(15,110,86,0.08); border-color: var(--success); color: #0A4030; }
-.alert-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
-
-/* ── FILTERS ── */
-.filter-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-.filter-bar label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-
-select {
-  font-family: var(--font);
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-strong);
-  background: var(--bg-card);
-  color: var(--text-primary);
-  cursor: pointer;
-}
-
-/* ── LEGEND ── */
-.legend {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-.legend-sq { width: 10px; height: 10px; border-radius: 2px; }
-
-/* ── UPDATE TAB ── */
-.update-section { display: flex; flex-direction: column; gap: 10px; }
-
-.update-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.update-label {
-  font-size: 12px;
-  color: var(--text-primary);
-  font-weight: 500;
-  min-width: 160px;
-  text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.update-row input[type=range] {
-  flex: 1;
-  accent-color: var(--primary);
-}
-
-.update-row input[type=number] {
-  width: 110px;
-  font-family: var(--font);
-  font-size: 12px;
-  padding: 5px 10px;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-sm);
-  color: var(--text-primary);
-  background: var(--bg-card);
-}
-
-.update-val {
-  font-size: 12px;
-  font-weight: 700;
-  min-width: 42px;
-  text-align: left;
-  color: var(--primary);
-}
-
-.update-max {
-  font-size: 11px;
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-
-.save-bar {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-
-.save-note {
-  font-size: 11px;
-  color: var(--text-muted);
-}
-
-/* ── CHART WRAPPERS ── */
-.chart-wrap { position: relative; width: 100%; }
-
-/* ── BUDGET ITEM ── */
-.budget-accent {
-  position: absolute;
-  top: 0; right: 0;
-  width: 4px; height: 100%;
-  border-radius: 0 var(--radius) var(--radius) 0;
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 99px; }
-
-/* ── TOAST ── */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--bg-sidebar);
-  color: white;
-  padding: 12px 24px;
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 600;
-  z-index: 999;
-  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  box-shadow: var(--shadow-md);
-}
-.toast.show { transform: translateX(-50%) translateY(0); }
-
-/* ── RESPONSIVE MOBILE ── */
-@media (max-width: 768px) {
-  .sidebar { display: none; }
-  .content { padding: 16px; }
-  .topbar { padding: 12px 16px; }
-  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-}
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8CC7A;
+    --gold-pale: #F5EDCC;
+    --dark: #1A1208;
+    --dark2: #2D1F0A;
+    --brown: #5C3D11;
+    --cream: #FBF6EC;
+    --accent: #8B4513;
+    --green: #2D6A4F;
+    --green-light: #52B788;
+    --red: #AE2D2D;
+    --blue: #1D4E89;
+    --text: #2C1810;
+    --shadow: 0 4px 20px rgba(201,168,76,0.15);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Tajawal', 'Cairo', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    direction: rtl;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 40%, var(--brown) 100%);
+    padding: 48px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+  .brand-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    padding: 6px 14px;
+    margin-bottom: 20px;
+  }
+  .brand-badge span { color: var(--gold-light); font-size: 12px; letter-spacing: 2px; font-weight: 500; text-transform: uppercase; }
+  .header h1 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 42px; font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header h1 span { color: var(--gold); }
+  .header-sub { color: rgba(255,255,255,0.6); font-size: 16px; font-weight: 300; }
+  .header-meta {
+    display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap;
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 3px; }
+  .meta-label { color: rgba(255,255,255,0.45); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
+  .meta-value { color: var(--gold-light); font-size: 14px; font-weight: 600; }
+
+  /* CONTENT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+
+  /* KPI CARDS */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .kpi-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: -20px;
+    width: 80px; height: 80px;
+    background: var(--gold-pale);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+  .kpi-card.green { border-top-color: var(--green); }
+  .kpi-card.blue { border-top-color: var(--blue); }
+  .kpi-card.brown { border-top-color: var(--accent); }
+  .kpi-label { font-size: 12px; color: #888; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 500; }
+  .kpi-value {
+    font-family: 'Cairo', sans-serif;
+    font-size: 32px; font-weight: 900;
+    color: var(--dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-unit { font-size: 14px; color: #aaa; }
+  .kpi-sub { font-size: 12px; color: var(--green); margin-top: 6px; font-weight: 600; }
+
+  /* SECTION TITLE */
+  .section-title {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px; margin-top: 40px;
+  }
+  .section-title h2 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--dark);
+  }
+  .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
+  .section-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--dark), var(--brown));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+
+  /* TABLE */
+  .table-wrap {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    background: linear-gradient(135deg, var(--dark), var(--dark2));
+    color: var(--gold-light);
+    padding: 14px 16px;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 0.3px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  tbody tr { border-bottom: 1px solid #f0ebe0; transition: background 0.15s; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #fdf9f0; }
+  tbody td {
+    padding: 12px 16px;
+    font-size: 13px;
+    text-align: center;
+    color: var(--text);
+  }
+  tbody td:first-child { font-weight: 600; color: var(--brown); text-align: right; }
+  .tfoot-row td {
+    background: var(--gold-pale);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--dark);
+    border-top: 2px solid var(--gold);
+  }
+  .num { font-family: 'Cairo', sans-serif; font-variant-numeric: tabular-nums; }
+  .badge-pos { background: #e8f4f8; color: #1D4E89; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-mrsool { background: #fff0e8; color: #E05D00; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-hunger { background: #ffe8e8; color: #C0392B; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-jahez { background: #e8f5e9; color: #2D6A4F; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .up { color: var(--green); }
+  .dn { color: var(--red); }
+
+  /* CHANNEL SUMMARY */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .channel-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .channel-icon { font-size: 32px; margin-bottom: 10px; }
+  .channel-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .channel-amount { font-family: 'Cairo', sans-serif; font-size: 26px; font-weight: 900; color: var(--gold); }
+  .channel-pct {
+    font-size: 12px; color: #888; margin-top: 4px;
+    background: var(--gold-pale); border-radius: 20px; padding: 2px 10px; display: inline-block;
+  }
+  .channel-orders { font-size: 12px; color: #666; margin-top: 6px; }
+
+  /* PAYMENT BREAKDOWN */
+  .pay-row {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .pay-label { width: 100px; font-size: 13px; color: var(--text); font-weight: 600; flex-shrink: 0; }
+  .pay-bar-wrap { flex: 1; height: 20px; background: #f0ebe0; border-radius: 10px; overflow: hidden; }
+  .pay-bar { height: 100%; border-radius: 10px; }
+  .pay-amount { width: 100px; text-align: left; font-size: 13px; font-weight: 700; color: var(--dark); font-family: 'Cairo', sans-serif; }
+
+  /* NOTE BOX */
+  .note-box {
+    background: linear-gradient(135deg, #fff8e8, #fff3d4);
+    border: 1px solid var(--gold);
+    border-right: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+    font-size: 13px; color: var(--dark); line-height: 1.8;
+  }
+  .note-box strong { color: var(--brown); }
+
+  /* YEARLY COMPARE */
+  .year-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
+  .year-card {
+    background: #fff; border-radius: 12px; padding: 24px;
+    box-shadow: var(--shadow); text-align: center;
+  }
+  .year-label { font-size: 30px; font-weight: 900; color: var(--gold); font-family: 'Cairo', sans-serif; }
+  .year-sales { font-size: 22px; font-weight: 700; color: var(--dark); margin: 8px 0 4px; font-family: 'Cairo', sans-serif; }
+  .year-orders { font-size: 13px; color: #888; }
+  .year-note { font-size: 11px; color: var(--red); margin-top: 4px; font-style: italic; }
+
+  /* PRODUCTS TOP */
+  .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:600px){ .prod-grid{grid-template-columns:1fr;} .year-grid{grid-template-columns:1fr;} }
+
+  .prod-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: var(--shadow); }
+  .prod-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 14px; border-bottom: 2px solid var(--gold-pale); padding-bottom: 10px; }
+  .prod-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .prod-rank { width: 24px; height: 24px; border-radius: 50%; background: var(--gold); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .prod-name { flex: 1; font-size: 13px; color: var(--text); margin: 0 10px; }
+  .prod-sales { font-size: 13px; font-weight: 700; color: var(--dark); font-family: 'Cairo', sans-serif; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+  .footer span { color: var(--gold); }
 </style>
 </head>
 <body>
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="sidebar-logo">
-    <div class="logo-badge">
-      <svg viewBox="0 0 24 24"><path d="M12 2C8 2 4 5 4 9c0 5.25 8 13 8 13s8-7.75 8-13c0-4-4-7-8-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="brand-badge"><span>📊 تقرير مبيعات شامل</span></div>
+    <h1>مؤسسة <span>رهيف</span> لتقديم الوجبات</h1>
+    <div class="header-sub">سجل صامطة، جازان — من بداية التشغيل حتى فبراير 2026</div>
+    <div class="header-meta">
+      <div class="meta-item"><span class="meta-label">فترة التقرير</span><span class="meta-value">أبريل 2024 — فبراير 2026</span></div>
+      <div class="meta-item"><span class="meta-label">المدة الكاملة</span><span class="meta-value">22 شهراً</span></div>
+      <div class="meta-item"><span class="meta-label">رقم الحساب</span><span class="meta-value">350000010006086396836</span></div>
+      <div class="meta-item"><span class="meta-label">تاريخ الإصدار</span><span class="meta-value">مايو 2026</span></div>
     </div>
-    <h2>جمعية يد ترعاك<br>لتطوير المهارات</h2>
-    <p>بيش العليا</p>
-    <span class="sidebar-year">2026م</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">إجمالي المبيعات الكلية</div>
+      <div class="kpi-value num">530,333</div>
+      <div class="kpi-unit">ريال سعودي</div>
+      <div class="kpi-sub">جميع قنوات البيع</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">مبيعات نقطة البيع (المحل)</div>
+      <div class="kpi-value num">384,966</div>
+      <div class="kpi-unit">ريال — 72.6%</div>
+      <div class="kpi-sub">26,145 طلب</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-label">إجمالي مبيعات التوصيل</div>
+      <div class="kpi-value num">145,367</div>
+      <div class="kpi-unit">ريال — 27.4%</div>
+      <div class="kpi-sub">مرسول + هنقر + جاهز</div>
+    </div>
+    <div class="kpi-card brown">
+      <div class="kpi-label">متوسط المبيعات الشهرية</div>
+      <div class="kpi-value num">24,106</div>
+      <div class="kpi-unit">ريال / شهر</div>
+      <div class="kpi-sub">22 شهر تشغيل</div>
+    </div>
   </div>
 
-  <div class="nav-section">
-    <div class="nav-label">لوحة التحكم</div>
-    <button class="nav-item active" onclick="switchPage('overview', this)">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
-      نظرة عامة
-    </button>
-    <button class="nav-item" onclick="switchPage('programs', this)">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-      البرامج التفصيلية
-    </button>
-    <button class="nav-item" onclick="switchPage('budget', this)">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-      المصروفات المالية
-    </button>
-    <button class="nav-item" onclick="switchPage('update', this)">
-      <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-      تحديث البيانات
-    </button>
+  <!-- NOTE -->
+  <div class="note-box">
+    ⚠️ <strong>ملاحظة منهجية:</strong> تمت مراجعة جميع الملفات مع الأخذ بعين الاعتبار <strong>تكرار الفترات الزمنية</strong> بين الملفات وتجنب الازدواجية.
+    مبيعات نقطة البيع مصدرها نظام <strong>نقطة (Nugttah)</strong> للفترة كاملة. مبيعات التوصيل محسوبة من <strong>التحويلات الفعلية الواردة</strong> في كشف الحساب البنكي (الراجحي) للحصول على القيم الصافية بعد خصم العمولات، وليس الأرقام الإجمالية من تطبيقات التوصيل.
   </div>
 
-  <div class="nav-section" style="margin-top: auto;">
-    <div class="nav-label">المحاور الاستراتيجية</div>
-    <div id="sidebar-axes"></div>
+  <!-- CHANNELS -->
+  <div class="section-title">
+    <div class="section-icon">🏪</div>
+    <h2>توزيع المبيعات حسب القناة</h2>
+    <div class="section-line"></div>
   </div>
 
-  <div class="sidebar-footer">
-    <div class="reg-badge">مسجلة لدى المركز الوطني<br>لتنمية القطاع غير الربحي<br>برقم (1000745100)</div>
+  <div class="channel-grid">
+    <div class="channel-card">
+      <div class="channel-icon">🏪</div>
+      <div class="channel-name">نقطة البيع (المحل)</div>
+      <div class="channel-amount num">384,966 ر.س</div>
+      <div class="channel-pct">72.6% من الإجمالي</div>
+      <div class="channel-orders">26,145 طلب | متوسط الطلب: 14.7 ر.س</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">🟠</div>
+      <div class="channel-name">جاهز (هنقر ستيشن)</div>
+      <div class="channel-amount num">59,495 ر.س</div>
+      <div class="channel-pct">11.2% من الإجمالي</div>
+      <div class="channel-orders">مدفوعات صافية للبنك</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">🔴</div>
+      <div class="channel-name">هنقر ستيشن</div>
+      <div class="channel-amount num">44,530 ر.س</div>
+      <div class="channel-pct">8.4% من الإجمالي</div>
+      <div class="channel-orders">مدفوعات صافية للبنك</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-icon">🟢</div>
+      <div class="channel-name">مرسول</div>
+      <div class="channel-amount num">41,342 ر.س</div>
+      <div class="channel-pct">7.8% من الإجمالي</div>
+      <div class="channel-orders">مدفوعات صافية للبنك</div>
+    </div>
   </div>
-</aside>
 
-<!-- MAIN -->
-<div class="main">
-  <!-- TOPBAR -->
-  <header class="topbar">
-    <div>
-      <div class="topbar-title" id="page-title">نظرة عامة على الخطة التشغيلية</div>
-      <div class="topbar-sub">آخر تحديث: <span id="last-update">—</span></div>
+  <!-- PAYMENT METHODS (POS) -->
+  <div class="section-title">
+    <div class="section-icon">💳</div>
+    <h2>طرق الدفع في نقطة البيع</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="table-wrap" style="padding:24px;">
+    <div class="pay-row">
+      <div class="pay-label">مدى (بطاقة)</div>
+      <div class="pay-bar-wrap"><div class="pay-bar" style="width:94.3%; background:linear-gradient(90deg,#1D4E89,#4A90D9);"></div></div>
+      <div class="pay-amount">363,115 ر.س</div>
     </div>
-    <div class="topbar-actions">
-      <span class="status-pill" id="overall-status">جارٍ التنفيذ</span>
-      <button class="btn btn-primary" onclick="switchPage('update', document.querySelectorAll('.nav-item')[3])">تحديث البيانات</button>
+    <div class="pay-row">
+      <div class="pay-label">نقدي</div>
+      <div class="pay-bar-wrap"><div class="pay-bar" style="width:4.7%; background:linear-gradient(90deg,#2D6A4F,#52B788);"></div></div>
+      <div class="pay-amount">18,005 ر.س</div>
     </div>
-  </header>
-
-  <!-- CONTENT -->
-  <div class="content">
-
-    <!-- ═══════════════ PAGE: OVERVIEW ═══════════════ -->
-    <div class="page active" id="page-overview">
-
-      <div class="metrics-grid" id="metrics-grid"></div>
-
-      <div class="grid2">
-        <div class="card">
-          <div class="card-title">نسبة الإنجاز حسب المحور</div>
-          <div class="axis-grid" id="axis-cards"></div>
-        </div>
-        <div class="card">
-          <div class="card-title">الميزانية المخططة مقابل الفعلية (ر.س)</div>
-          <div class="legend">
-            <span class="legend-item"><span class="legend-sq" style="background:var(--primary)"></span>مخططة</span>
-            <span class="legend-item"><span class="legend-sq" style="background:var(--blue-light)"></span>فعلية</span>
-          </div>
-          <div class="chart-wrap" style="height:280px">
-            <canvas id="budgetChart" role="img" aria-label="مقارنة الميزانية المخططة والفعلية لكل محور"></canvas>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">الجدول الزمني — نسبة إنجاز البرامج</div>
-        <div class="prog-list" id="all-prog-bars"></div>
-      </div>
-
+    <div class="pay-row">
+      <div class="pay-label">فيزا وأخرى</div>
+      <div class="pay-bar-wrap"><div class="pay-bar" style="width:0.9%; background:linear-gradient(90deg,#C9A84C,#E8CC7A);"></div></div>
+      <div class="pay-amount">1,846 ر.س</div>
     </div>
+  </div>
 
-    <!-- ═══════════════ PAGE: PROGRAMS ═══════════════ -->
-    <div class="page" id="page-programs">
+  <!-- ANNUAL -->
+  <div class="section-title">
+    <div class="section-icon">📅</div>
+    <h2>المقارنة السنوية — نقطة البيع</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="year-grid">
+    <div class="year-card">
+      <div class="year-label">2024</div>
+      <div class="year-sales num">183,119 ر.س</div>
+      <div class="year-orders">11,956 طلب | 9 أشهر (أبريل–ديسمبر)</div>
+      <div class="year-note">* بداية التشغيل أبريل 2024</div>
+    </div>
+    <div class="year-card">
+      <div class="year-label">2025</div>
+      <div class="year-sales num">190,409 ر.س</div>
+      <div class="year-orders">13,449 طلب | سنة كاملة</div>
+      <div class="year-note">نمو +3.9% مقارنة بـ 2024 المعدّل</div>
+    </div>
+    <div class="year-card">
+      <div class="year-label">2026</div>
+      <div class="year-sales num">11,438 ر.س</div>
+      <div class="year-orders">740 طلب | يناير فقط</div>
+      <div class="year-note">* البيانات حتى يناير 2026</div>
+    </div>
+  </div>
 
-      <div class="filter-bar">
-        <label>المحور:</label>
-        <select id="axis-filter" onchange="renderProgramsPage()">
-          <option value="all">جميع المحاور</option>
-          <option value="0">المحور الأول – اكتشاف المواهب</option>
-          <option value="1">المحور الثاني – تطوير الذات والوعي المالي</option>
-          <option value="2">المحور الثالث – التنمية الشخصية</option>
-          <option value="3">المحور الرابع – الاستشارات والخدمات</option>
-          <option value="4">المحور الخامس – بناء القدرات</option>
-        </select>
-        <label>الحالة:</label>
-        <select id="status-filter" onchange="renderProgramsPage()">
-          <option value="all">الكل</option>
-          <option value="done">مكتمل</option>
-          <option value="progress">جارٍ</option>
-          <option value="pending">لم يبدأ</option>
-          <option value="delayed">متأخر</option>
-        </select>
-      </div>
+  <!-- MONTHLY TABLE -->
+  <div class="section-title">
+    <div class="section-icon">📋</div>
+    <h2>السجل الشهري التفصيلي</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>الشهر</th>
+          <th>نقطة البيع</th>
+          <th>عدد الطلبات</th>
+          <th>مرسول (صافي)</th>
+          <th>هنقر (صافي)</th>
+          <th>جاهز (صافي)</th>
+          <th>إجمالي التوصيل</th>
+          <th>الإجمالي الكلي</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>أبريل 2024</td><td class="num">13,852</td><td class="num">1,018</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">13,852</td></tr>
+        <tr><td>مايو 2024</td><td class="num">18,483</td><td class="num">1,340</td><td class="num">—</td><td class="num">—</td><td class="num">2,147</td><td class="num">2,147</td><td class="num">20,630</td></tr>
+        <tr><td>يونيو 2024</td><td class="num">18,128</td><td class="num">1,156</td><td class="num">639</td><td class="num">572</td><td class="num">1,238</td><td class="num">2,449</td><td class="num">20,577</td></tr>
+        <tr><td>يوليو 2024</td><td class="num">21,069</td><td class="num">1,380</td><td class="num">7,292</td><td class="num">1,009</td><td class="num">5,913</td><td class="num">14,214</td><td class="num"><strong>35,283</strong></td></tr>
+        <tr><td>أغسطس 2024</td><td class="num">23,942</td><td class="num">1,429</td><td class="num">4,322</td><td class="num">1,590</td><td class="num">4,468</td><td class="num">10,380</td><td class="num">34,322</td></tr>
+        <tr><td>سبتمبر 2024</td><td class="num">18,991</td><td class="num">1,332</td><td class="num">3,523</td><td class="num">1,300</td><td class="num">3,709</td><td class="num">8,532</td><td class="num">27,523</td></tr>
+        <tr><td>أكتوبر 2024</td><td class="num">24,159</td><td class="num">1,537</td><td class="num">2,848</td><td class="num">1,245</td><td class="num">474</td><td class="num">4,567</td><td class="num">28,726</td></tr>
+        <tr><td>نوفمبر 2024</td><td class="num">22,805</td><td class="num">1,413</td><td class="num">3,204</td><td class="num">2,058</td><td class="num">4,045</td><td class="num">9,307</td><td class="num">32,112</td></tr>
+        <tr><td>ديسمبر 2024</td><td class="num">21,690</td><td class="num">1,351</td><td class="num">3,116</td><td class="num">2,505</td><td class="num">2,867</td><td class="num">8,488</td><td class="num">30,178</td></tr>
+        <tr><td>يناير 2025</td><td class="num">17,957</td><td class="num">1,230</td><td class="num">3,260</td><td class="num">2,010</td><td class="num">3,313</td><td class="num">8,583</td><td class="num">26,540</td></tr>
+        <tr><td>فبراير 2025</td><td class="num">17,661</td><td class="num">1,185</td><td class="num">2,235</td><td class="num">1,981</td><td class="num">2,058</td><td class="num">6,274</td><td class="num">23,935</td></tr>
+        <tr><td style="color:var(--red)">مارس 2025 ⚠️</td><td class="num" style="color:var(--red)">5,070</td><td class="num">429</td><td class="num">1,501</td><td class="num">921</td><td class="num">1,911</td><td class="num">4,333</td><td class="num" style="color:var(--red)">9,403</td></tr>
+        <tr><td>أبريل 2025</td><td class="num">20,123</td><td class="num">1,308</td><td class="num">342</td><td class="num">2,639</td><td class="num">4,777</td><td class="num">7,758</td><td class="num">27,881</td></tr>
+        <tr><td>مايو 2025</td><td class="num">15,531</td><td class="num">1,020</td><td class="num">1,548</td><td class="num">2,901</td><td class="num">6,082</td><td class="num">10,531</td><td class="num">26,062</td></tr>
+        <tr><td>يونيو 2025</td><td class="num">15,952</td><td class="num">1,109</td><td class="num">974</td><td class="num">2,293</td><td class="num">3,127</td><td class="num">6,394</td><td class="num">22,346</td></tr>
+        <tr><td>يوليو 2025</td><td class="num">15,238</td><td class="num">1,095</td><td class="num">1,308</td><td class="num">2,762</td><td class="num">3,390</td><td class="num">7,460</td><td class="num">22,698</td></tr>
+        <tr><td>أغسطس 2025</td><td class="num">17,567</td><td class="num">1,258</td><td class="num">1,789</td><td class="num">3,608</td><td class="num">3,645</td><td class="num">9,042</td><td class="num">26,609</td></tr>
+        <tr><td>سبتمبر 2025</td><td class="num">16,210</td><td class="num">1,229</td><td class="num">1,325</td><td class="num">2,955</td><td class="num">686</td><td class="num">4,966</td><td class="num">21,176</td></tr>
+        <tr><td>أكتوبر 2025</td><td class="num">15,628</td><td class="num">1,189</td><td class="num">713</td><td class="num">2,341</td><td class="num">1,405</td><td class="num">4,459</td><td class="num">20,087</td></tr>
+        <tr><td>نوفمبر 2025</td><td class="num">14,717</td><td class="num">1,122</td><td class="num">689</td><td class="num">2,341</td><td class="num">966</td><td class="num">3,996</td><td class="num">18,713</td></tr>
+        <tr><td>ديسمبر 2025</td><td class="num">18,756</td><td class="num">1,275</td><td class="num">713</td><td class="num">2,610</td><td class="num">1,373</td><td class="num">4,696</td><td class="num">23,452</td></tr>
+        <tr><td>يناير 2026</td><td class="num">11,438</td><td class="num">740</td><td class="num">—</td><td class="num">3,578</td><td class="num">820</td><td class="num">4,398</td><td class="num">15,836</td></tr>
+        <tr><td>فبراير 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">1,311</td><td class="num">1,081</td><td class="num">2,392</td><td class="num">2,392</td></tr>
+        <tr class="tfoot-row">
+          <td>الإجمالي الكلي</td>
+          <td class="num">384,966</td>
+          <td class="num">26,145</td>
+          <td class="num">41,342</td>
+          <td class="num">44,530</td>
+          <td class="num">59,495</td>
+          <td class="num">145,367</td>
+          <td class="num">530,333</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-      <div id="prog-alerts"></div>
-
-      <div class="card">
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>البرنامج</th>
-                <th>المحور</th>
-                <th>الفترة</th>
-                <th>المخطط (ر.س)</th>
-                <th>الفعلي (ر.س)</th>
-                <th>الانحراف</th>
-                <th>الإنجاز</th>
-                <th>المستفيدون</th>
-                <th>الحالة</th>
-              </tr>
-            </thead>
-            <tbody id="prog-tbody"></tbody>
-          </table>
-        </div>
+  <!-- TOP PRODUCTS (MRSOOL) -->
+  <div class="section-title">
+    <div class="section-icon">🥙</div>
+    <h2>أكثر المنتجات مبيعاً — قناة مرسول</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-title">🏆 أفضل 10 منتجات (مرسول)</div>
+      <div class="prod-item"><div class="prod-rank">1</div><div class="prod-name">شباتي جبن وبطاطس عمان</div><div class="prod-sales">1,365 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank">2</div><div class="prod-name">شباتي بيض جبن شبس عمان</div><div class="prod-sales">1,032 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank">3</div><div class="prod-name">شباتي دجاج</div><div class="prod-sales">819 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank">4</div><div class="prod-name">شباتي بيض وجبنة</div><div class="prod-sales">707 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank">5</div><div class="prod-name">شباتي فلافل</div><div class="prod-sales">552 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank">6</div><div class="prod-name">كرك كلاسيك</div><div class="prod-sales">449 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank">7</div><div class="prod-name">بيبسي</div><div class="prod-sales">432 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank">8</div><div class="prod-name">شباتي تونة</div><div class="prod-sales">350 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank">9</div><div class="prod-name">ماونتن ديو</div><div class="prod-sales">327 ر.س</div></div>
+      <div class="prod-item"><div class="prod-rank" style="background:var(--brown)">10</div><div class="prod-name">شباتي جبنة سائلة</div><div class="prod-sales">252 ر.س</div></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-title">📊 ملاحظات وتحليل أداء</div>
+      <div style="line-height:2; font-size:13px; color:var(--text);">
+        <p>🔺 <strong>أعلى شهر مبيعاً (نقطة البيع):</strong> أكتوبر 2024 بـ 24,159 ر.س و 1,537 طلب</p><br>
+        <p>🔻 <strong>أدنى شهر (نقطة البيع):</strong> مارس 2025 بـ 5,070 ر.س — انخفاض حاد غير اعتيادي يستدعي المراجعة</p><br>
+        <p>🚀 <strong>أعلى شهر إجمالي:</strong> يوليو 2024 بـ 35,283 ر.س (توصيل قوي جداً)</p><br>
+        <p>📈 <strong>نسبة النمو السنوي 2025:</strong> ارتفاع طفيف +3.9% في نقطة البيع</p><br>
+        <p>💡 <strong>متوسط قيمة الطلب:</strong> 14.7 ر.س في نقطة البيع</p><br>
+        <p>💳 <strong>الدفع الإلكتروني:</strong> 94.3% من عمليات نقطة البيع عبر مدى — نادراً ما يُدفع نقداً</p><br>
+        <p>📦 <strong>منصات التوصيل:</strong> تمثل 27.4% من إجمالي الإيرادات — فرصة نمو</p>
       </div>
     </div>
+  </div>
 
-    <!-- ═══════════════ PAGE: BUDGET ═══════════════ -->
-    <div class="page" id="page-budget">
+  <!-- SUMMARY -->
+  <div class="section-title">
+    <div class="section-icon">✅</div>
+    <h2>الخلاصة التنفيذية</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="note-box" style="background:linear-gradient(135deg,#f0f8f4,#e8f5ee); border-color:var(--green); border-right-color:var(--green);">
+    <strong>الإجمالي الكلي منذ بداية التشغيل (أبريل 2024 – فبراير 2026):</strong><br><br>
+    ✅ إجمالي الإيرادات الكلية: <strong>530,333 ريال سعودي</strong><br>
+    ✅ مبيعات نقطة البيع: <strong>384,966 ر.س (72.6%)</strong> — 26,145 طلب<br>
+    ✅ مبيعات التوصيل الصافية: <strong>145,367 ر.س (27.4%)</strong><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;↳ جاهز: 59,495 ر.س | هنقر ستيشن: 44,530 ر.س | مرسول: 41,342 ر.س<br><br>
+    ⚠️ مارس 2025 يحتاج مراجعة — انخفاض حاد في نقطة البيع (5,070 ر.س فقط)<br>
+    ⚠️ مرسول: تراجع ملحوظ في النصف الثاني من 2025 مقارنة بـ 2024<br>
+    💡 الفرصة: تعزيز التوصيل يمكن أن يرفع الإيرادات بنسبة كبيرة
+  </div>
 
-      <div class="grid2" style="margin-bottom:18px">
-        <div class="card">
-          <div class="card-title">توزيع المصروفات الفعلية حسب بنود دليل الحسابات</div>
-          <div class="chart-wrap" style="height:280px">
-            <canvas id="expenseChart" role="img" aria-label="مخطط دائري لتوزيع المصروفات"></canvas>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">الإنفاق الشهري — مخطط مقابل فعلي (ر.س)</div>
-          <div class="legend">
-            <span class="legend-item"><span class="legend-sq" style="background:var(--primary);opacity:0.5"></span>مخطط</span>
-            <span class="legend-item"><span class="legend-sq" style="background:var(--blue-light)"></span>فعلي</span>
-          </div>
-          <div class="chart-wrap" style="height:250px">
-            <canvas id="monthlyChart" role="img" aria-label="الإنفاق الشهري مخطط مقابل فعلي"></canvas>
-          </div>
-        </div>
-      </div>
+</div>
 
-      <div class="card">
-        <div class="card-title">تفصيل النفقات حسب بنود دليل الحسابات</div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>الكود</th>
-                <th>بند الإنفاق</th>
-                <th>المخطط (ر.س)</th>
-                <th>الفعلي (ر.س)</th>
-                <th>المتبقي (ر.س)</th>
-                <th>نسبة الصرف</th>
-                <th>الحالة</th>
-              </tr>
-            </thead>
-            <tbody id="budget-tbody"></tbody>
-            <tfoot id="budget-tfoot"></tfoot>
-          </table>
-        </div>
-      </div>
-    </div>
+<div class="footer">
+  تقرير مبيعات مؤسسة رهيف لتقديم الوجبات — <span>صامطة، جازان</span> — مُعدّ من بيانات نظام نقطة البيع (Nugttah) وكشف الحساب البنكي (الراجحي) ومنصات التوصيل
+</div>
 
-    <!-- ═══════════════ PAGE: UPDATE ═══════════════ -->
-    <div class="page" id="page-update">
-
-      <div class="grid2">
-        <div class="card">
-          <div class="card-title">تحديث نسب إنجاز البرامج</div>
-          <div class="update-section" id="sliders-section"></div>
-        </div>
-        <div class="card">
-          <div class="card-title">تحديث المصروفات الفعلية (ر.س)</div>
-          <div class="update-section" id="expenses-section"></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-title">تحديث أعداد المستفيدين الفعليين</div>
-        <div class="update-section" id="beneficiaries-section"></div>
-        <div class="save-bar">
-          <button class="btn btn-primary" onclick="saveUpdates()">حفظ جميع التحديثات</button>
-          <button class="btn btn-danger" onclick="resetData()">إعادة تعيين البيانات</button>
-          <span class="save-note">البيانات تُحفظ تلقائياً في المتصفح</span>
-        </div>
-      </div>
-
-    </div>
-
-  </div><!-- /content -->
-</div><!-- /main -->
-
-<div class="toast" id="toast"></div>
-
-<script>
-// ─────────────────────── DATA ───────────────────────
-const AXES = [
-  { name: "اكتشاف المواهب وتمكينها",           short: "المحور 1", period: "فبراير – مارس",    color: "#1A6B5A", planned: 58000 },
-  { name: "تطوير الذات والوعي المالي",          short: "المحور 2", period: "أبريل – يونيو",     color: "#378ADD", planned: 85000 },
-  { name: "التنمية الشخصية والاعتماد على الذات", short: "المحور 3", period: "يونيو – أغسطس",    color: "#BA7517", planned: 55000 },
-  { name: "الاستشارات والخدمات الصحية والأسرية", short: "المحور 4", period: "أغسطس – أكتوبر",  color: "#7C3AED", planned: 61500 },
-  { name: "بناء قدرات الشباب المعرفية والمهارية", short: "المحور 5", period: "نوفمبر – ديسمبر", color: "#DC2626", planned: 50000 },
-];
-
-const DEFAULT_PROGRAMS = [
-  { name:"مسابقة اكسب التحدي",         axis:0, period:"فبراير-مارس",    planned:15000, actual:14200, completion:92, beneficiaries:85,  targetBen:100 },
-  { name:"دورة رياضية رمضانية",        axis:0, period:"فبراير-مارس",    planned:18000, actual:17500, completion:88, beneficiaries:70,  targetBen:80 },
-  { name:"مسابقة الحارات",             axis:0, period:"فبراير-مارس",    planned:15000, actual:15800, completion:95, beneficiaries:200, targetBen:200 },
-  { name:"ديوانية القرية",             axis:0, period:"فبراير-مارس",    planned:10000, actual:9100,  completion:78, beneficiaries:40,  targetBen:50 },
-  { name:"أتقان مهارات الأوفيس",      axis:1, period:"أبريل-يونيو",     planned:40000, actual:22000, completion:55, beneficiaries:55,  targetBen:100 },
-  { name:"فن التصوير",                 axis:1, period:"أبريل-يونيو",     planned:15000, actual:7500,  completion:50, beneficiaries:30,  targetBen:60 },
-  { name:"إدارة المصاريف",             axis:1, period:"أبريل-يونيو",     planned:16500, actual:8000,  completion:48, beneficiaries:48,  targetBen:100 },
-  { name:"التخطيط المالي",             axis:1, period:"أبريل-يونيو",     planned:13500, actual:5000,  completion:37, beneficiaries:25,  targetBen:80 },
-  { name:"إدارة الذات",                axis:2, period:"يونيو-أغسطس",    planned:10000, actual:0,     completion:0,  beneficiaries:0,   targetBen:60 },
-  { name:"صيانة الجوالات",             axis:2, period:"يونيو-أغسطس",    planned:15000, actual:0,     completion:0,  beneficiaries:0,   targetBen:50 },
-  { name:"الأمن السيبراني",            axis:2, period:"يونيو-أغسطس",    planned:15000, actual:0,     completion:0,  beneficiaries:0,   targetBen:80 },
-  { name:"صناعة القهوة",               axis:2, period:"يونيو-أغسطس",    planned:15000, actual:0,     completion:0,  beneficiaries:0,   targetBen:40 },
-  { name:"التوعية بأمراض السكري",      axis:3, period:"أغسطس-أكتوبر",  planned:10000, actual:0,     completion:0,  beneficiaries:0,   targetBen:60 },
-  { name:"التوعية بالإسعافات الأولية", axis:3, period:"أغسطس-أكتوبر",  planned:15000, actual:0,     completion:0,  beneficiaries:0,   targetBen:70 },
-  { name:"ساعة استشارة",               axis:3, period:"أغسطس-أكتوبر",  planned:16500, actual:0,     completion:0,  beneficiaries:0,   targetBen:100 },
-  { name:"وقفات تربوية أسرية",         axis:3, period:"أغسطس-أكتوبر",  planned:20000, actual:0,     completion:0,  beneficiaries:0,   targetBen:80 },
-  { name:"القدرات والتحصيلي",          axis:4, period:"نوفمبر-ديسمبر", planned:15000, actual:0,     completion:0,  beneficiaries:0,   targetBen:80 },
-  { name:"موهوب",                      axis:4, period:"نوفمبر-ديسمبر", planned:10000, actual:0,     completion:0,  beneficiaries:0,   targetBen:40 },
-  { name:"مسابقة بنك المعلومات",       axis:4, period:"نوفمبر-ديسمبر", planned:15000, actual:0,     completion:0,  beneficiaries:0,   targetBen:120 },
-  { name:"مهارات الذكاء الاصطناعي",   axis:4, period:"نوفمبر-ديسمبر", planned:10000, actual:0,     completion:0,  beneficiaries:0,   targetBen:60 },
-];
-
-const DEFAULT_EXPENSES = [
-  { code:"1-1", name:"المصروفات الإدارية والتشغيلية", planned:36000, actual:18000 },
-  { code:"1-2", name:"الموارد البشرية والمتطوعين",    planned:48000, actual:26500 },
-  { code:"1-3", name:"البرامج والأنشطة",              planned:108000, actual:58100 },
-  { code:"1-4", name:"الفعاليات والمسابقات",          planned:54000, actual:42500 },
-  { code:"1-5", name:"التسويق والتوعية",              planned:24000, actual:9200 },
-  { code:"1-6", name:"التقنية والمعدات",              planned:30000, actual:12000 },
-  { code:"1-7", name:"الصحة والسلامة",                planned:12000, actual:0 },
-  { code:"1-8", name:"الاحتياطي والطوارئ",            planned:12000, actual:0 },
-];
-
-const MONTHLY_PLAN   = [0,32000,32000,0,28333,28333,28333,20500,20500,20500,25000,25000];
-const MONTHLY_ACTUAL = [0,35000,28600,0,21000,22000,0,0,0,0,0,0];
-
-// ─────────────────────── STATE ───────────────────────
-let programs = [], expenses = [];
-
-function loadData() {
-  try {
-    const p = localStorage.getItem('yt_programs');
-    const e = localStorage.getItem('yt_expenses');
-    programs = p ? JSON.parse(p) : DEFAULT_PROGRAMS.map(x=>({...x}));
-    expenses = e ? JSON.parse(e) : DEFAULT_EXPENSES.map(x=>({...x}));
-  } catch { programs = DEFAULT_PROGRAMS.map(x=>({...x})); expenses = DEFAULT_EXPENSES.map(x=>({...x})); }
-}
-
-function saveData() {
-  try {
-    localStorage.setItem('yt_programs', JSON.stringify(programs));
-    localStorage.setItem('yt_expenses', JSON.stringify(expenses));
-  } catch {}
-}
-
-// ─────────────────────── HELPERS ───────────────────────
-function getStatus(p) {
-  if (p.completion === 100) return 'done';
-  if (p.completion === 0) return 'pending';
-  const variance = p.actual > 0 ? (p.actual - (p.planned * p.completion / 100)) / p.planned : 0;
-  if (variance > 0.12 && p.completion < 50) return 'delayed';
-  return 'progress';
-}
-
-function statusChip(s) {
-  const m = { done:['مكتمل','g'], progress:['جارٍ','a'], delayed:['متأخر','r'], pending:['لم يبدأ','n'] };
-  const [lbl,cls] = m[s] || ['—','n'];
-  return `<span class="chip chip-${cls}">${lbl}</span>`;
-}
-
-function fmt(n) { return Math.round(n).toLocaleString('ar-SA'); }
-
-function totalPlanned() { return programs.reduce((a,p)=>a+p.planned,0); }
-function totalActual()  { return programs.reduce((a,p)=>a+p.actual,0); }
-function totalBen()     { return programs.reduce((a,p)=>a+p.beneficiaries,0); }
-function avgCompletion(){ return Math.round(programs.reduce((a,p)=>a+p.completion,0)/programs.length); }
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 2500);
-}
-
-// ─────────────────────── NAVIGATION ───────────────────────
-const pageTitles = { overview:'نظرة عامة على الخطة التشغيلية', programs:'البرامج التفصيلية', budget:'المصروفات المالية', update:'تحديث البيانات' };
-let budgetChart, expenseChart, monthlyChart;
-let currentPage = 'overview';
-
-function switchPage(id, btn) {
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  document.getElementById('page-title').textContent = pageTitles[id];
-  currentPage = id;
-  if (id==='budget') { setTimeout(()=>{ renderExpenseChart(); renderMonthlyChart(); }, 50); }
-  if (id==='update') renderUpdateForms();
-}
-
-// ─────────────────────── METRICS ───────────────────────
-function renderMetrics() {
-  const pct = avgCompletion();
-  const benPct = Math.round(totalBen() / 600 * 100);
-  const spendPct = Math.round(totalActual() / totalPlanned() * 100);
-  const variance = totalActual() - (totalPlanned() * pct / 100);
-  const varSign = variance > 0 ? '+' : '';
-
-  document.getElementById('metrics-grid').innerHTML = `
-    <div class="metric-card" style="--accent-color:var(--primary)">
-      <div class="metric-label">إجمالي الميزانية</div>
-      <div class="metric-value">${fmt(totalPlanned())}</div>
-      <div class="metric-sub">ريال سعودي مخطط</div>
-    </div>
-    <div class="metric-card" style="--accent-color:var(--blue-light)">
-      <div class="metric-label">إجمالي المصروف الفعلي</div>
-      <div class="metric-value" style="color:var(--blue)">${fmt(totalActual())}</div>
-      <div class="metric-sub">${spendPct}% من الميزانية</div>
-      <span class="metric-change neutral">${spendPct}% منصرف</span>
-    </div>
-    <div class="metric-card" style="--accent-color:var(--success)">
-      <div class="metric-label">متوسط نسبة الإنجاز</div>
-      <div class="metric-value" style="color:var(--success)">${pct}%</div>
-      <div class="metric-sub">من جميع البرامج الـ 20</div>
-      <span class="metric-change up">على المسار</span>
-    </div>
-    <div class="metric-card" style="--accent-color:var(--accent)">
-      <div class="metric-label">إجمالي المستفيدين</div>
-      <div class="metric-value">${fmt(totalBen())}</div>
-      <div class="metric-sub">${benPct}% من الهدف (600+)</div>
-    </div>
-    <div class="metric-card" style="--accent-color:${Math.abs(variance)>5000?(variance>0?'var(--danger)':'var(--success)'):'var(--amber)'}">
-      <div class="metric-label">الانحراف المالي</div>
-      <div class="metric-value" style="color:${variance>5000?'var(--danger)':variance<-5000?'var(--success)':'var(--amber)'};font-size:20px">${varSign}${fmt(variance)}</div>
-      <div class="metric-sub">ريال عن المخطط النسبي</div>
-      <span class="metric-change ${variance>3000?'down':variance<-3000?'up':'neutral'}">${variance>3000?'تجاوز':variance<-3000?'وفر':'طبيعي'}</span>
-    </div>
-  `;
-}
-
-// ─────────────────────── AXIS CARDS ───────────────────────
-function renderAxisCards() {
-  document.getElementById('axis-cards').innerHTML = AXES.map((ax,i) => {
-    const progs = programs.filter(p=>p.axis===i);
-    const avg = Math.round(progs.reduce((a,p)=>a+p.completion,0)/progs.length);
-    const act = progs.reduce((a,p)=>a+p.actual,0);
-    const bpct = Math.round(act/ax.planned*100);
-    const done = progs.filter(p=>getStatus(p)==='done').length;
-    return `<div class="axis-item">
-      <div class="axis-row">
-        <div>
-          <div class="axis-name">${ax.name}</div>
-          <div class="axis-period">${ax.period}</div>
-        </div>
-        <div class="axis-pct" style="color:${ax.color}">${avg}%</div>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" style="width:${avg}%;background:${ax.color}"></div>
-      </div>
-      <div class="axis-meta">
-        <span>صُرف: ${fmt(act)} / ${fmt(ax.planned)} ر.س (${bpct}%)</span>
-        <span>${done}/${progs.length} برامج مكتملة</span>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ─────────────────────── PROG BARS ───────────────────────
-function renderProgBars() {
-  document.getElementById('all-prog-bars').innerHTML = programs.map(p => {
-    const ax = AXES[p.axis];
-    const st = getStatus(p);
-    const dotColor = {done:'var(--success)',progress:'var(--amber)',delayed:'var(--danger)',pending:'var(--text-muted)'}[st];
-    return `<div class="prog-row">
-      <div class="prog-dot" style="background:${dotColor}"></div>
-      <span class="prog-name" title="${p.name}">${p.name}</span>
-      <div class="prog-track">
-        <div class="prog-plan-bar" style="background:${ax.color}"></div>
-        <div class="prog-actual-bar" style="width:${p.completion}%;background:${ax.color}"></div>
-      </div>
-      <span class="prog-pct" style="color:${ax.color}">${p.completion}%</span>
-      <span class="prog-amt">${fmt(p.actual)} ر.س</span>
-    </div>`;
-  }).join('');
-}
-
-// ─────────────────────── BUDGET CHART ───────────────────────
-function renderBudgetChart() {
-  const ctx = document.getElementById('budgetChart').getContext('2d');
-  if (budgetChart) budgetChart.destroy();
-  budgetChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: AXES.map(a=>a.short),
-      datasets: [
-        { label:'مخطط', data:AXES.map(a=>a.planned), backgroundColor:'rgba(26,107,90,0.75)', borderRadius:5 },
-        { label:'فعلي', data:AXES.map((_,i)=>programs.filter(p=>p.axis===i).reduce((a,p)=>a+p.actual,0)), backgroundColor:'rgba(55,138,221,0.85)', borderRadius:5 },
-      ]
-    },
-    options: {
-      responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{display:false} },
-      scales:{
-        x:{ ticks:{font:{size:10,family:'Cairo'},color:'#8FA09D'}, grid:{display:false} },
-        y:{ ticks:{font:{size:10,family:'Cairo'},color:'#8FA09D', callback:v=>(v/1000)+'k'}, grid:{color:'rgba(0,0,0,0.04)'} }
-      }
-    }
-  });
-}
-
-// ─────────────────────── SIDEBAR AXES ───────────────────────
-function renderSidebarAxes() {
-  document.getElementById('sidebar-axes').innerHTML = AXES.map((ax,i) => {
-    const progs = programs.filter(p=>p.axis===i);
-    const avg = Math.round(progs.reduce((a,p)=>a+p.completion,0)/progs.length);
-    return `<div style="padding:7px 8px 7px 12px;margin-bottom:4px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-        <span style="font-size:11px;color:rgba(255,255,255,0.5)">${ax.short}</span>
-        <span style="font-size:11px;font-weight:700;color:${ax.color}">${avg}%</span>
-      </div>
-      <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
-        <div style="height:100%;width:${avg}%;background:${ax.color};border-radius:99px;transition:width 0.5s ease;"></div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ─────────────────────── PROGRAMS TABLE ───────────────────────
-function renderProgramsPage() {
-  const axF = document.getElementById('axis-filter').value;
-  const stF = document.getElementById('status-filter').value;
-  const filtered = programs.filter(p => {
-    return (axF==='all'||p.axis===+axF) && (stF==='all'||getStatus(p)===stF);
-  });
-
-  const delayed = programs.filter(p=>getStatus(p)==='delayed');
-  document.getElementById('prog-alerts').innerHTML =
-    delayed.length
-      ? delayed.map(p=>`<div class="alert alert-warn"><span class="alert-icon">⚠</span>برنامج "<strong>${p.name}</strong>" يُسجّل تأخراً في التنفيذ مع احتمال تجاوز الميزانية.</div>`).join('')
-      : `<div class="alert alert-ok"><span class="alert-icon">✓</span>جميع البرامج النشطة تسير وفق الجدول الزمني المخطط.</div>`;
-
-  document.getElementById('prog-tbody').innerHTML = filtered.map(p => {
-    const ax = AXES[p.axis];
-    const exp = p.planned * p.completion / 100;
-    const variance = p.actual - exp;
-    const varFmt = variance===0 ? '—' : (variance>0?'+':'')+fmt(variance);
-    const varColor = variance>2000?'var(--danger)':variance<-2000?'var(--success)':'var(--text-secondary)';
-    const st = getStatus(p);
-    return `<tr>
-      <td style="font-weight:600">${p.name}</td>
-      <td><span style="font-size:11px;font-weight:700;color:${ax.color}">${ax.short}</span></td>
-      <td style="font-size:11px;color:var(--text-muted)">${p.period}</td>
-      <td>${fmt(p.planned)}</td>
-      <td style="font-weight:600;color:var(--blue)">${fmt(p.actual)}</td>
-      <td style="font-weight:600;color:${varColor}">${varFmt}</td>
-      <td>
-        <div class="mini-prog">
-          <div class="mini-track"><div class="mini-fill" style="width:${p.completion}%;background:${ax.color}"></div></div>
-          <span style="font-size:11px;font-weight:700;color:${ax.color}">${p.completion}%</span>
-        </div>
-      </td>
-      <td>${p.beneficiaries} / ${p.targetBen}</td>
-      <td>${statusChip(st)}</td>
-    </tr>`;
-  }).join('');
-}
-
-// ─────────────────────── EXPENSE CHARTS ───────────────────────
-function renderExpenseChart() {
-  const ctx = document.getElementById('expenseChart');
-  if (!ctx) return;
-  if (expenseChart) expenseChart.destroy();
-  const colors = ['#1A6B5A','#378ADD','#BA7517','#7C3AED','#DC2626','#0891B2','#059669','#64748B'];
-  expenseChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: expenses.map(e=>e.name),
-      datasets: [{ data:expenses.map(e=>e.actual), backgroundColor:colors, borderWidth:0, hoverOffset:6 }]
-    },
-    options: {
-      responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{ position:'right', labels:{ font:{size:10,family:'Cairo'}, padding:10, boxWidth:10 } } },
-      cutout:'60%'
-    }
-  });
-}
-
-function renderMonthlyChart() {
-  const ctx = document.getElementById('monthlyChart');
-  if (!ctx) return;
-  if (monthlyChart) monthlyChart.destroy();
-  const labels = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-  monthlyChart = new Chart(ctx, {
-    type:'line',
-    data:{
-      labels,
-      datasets:[
-        { label:'مخطط', data:MONTHLY_PLAN, borderColor:'rgba(26,107,90,0.6)', backgroundColor:'rgba(26,107,90,0.06)', tension:0.4, borderDash:[5,3], pointRadius:3, fill:true },
-        { label:'فعلي', data:MONTHLY_ACTUAL, borderColor:'#378ADD', backgroundColor:'rgba(55,138,221,0.06)', tension:0.4, pointRadius:4, fill:true },
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:false,
-      plugins:{ legend:{ display:false } },
-      scales:{
-        x:{ ticks:{font:{size:9,family:'Cairo'},color:'#8FA09D', maxRotation:45, autoSkip:false} },
-        y:{ ticks:{font:{size:9,family:'Cairo'},color:'#8FA09D', callback:v=>(v/1000)+'k'}, grid:{color:'rgba(0,0,0,0.04)'} }
-      }
-    }
-  });
-}
-
-function renderBudgetTable() {
-  const totP = expenses.reduce((a,e)=>a+e.planned,0);
-  const totA = expenses.reduce((a,e)=>a+e.actual,0);
-  document.getElementById('budget-tbody').innerHTML = expenses.map(e => {
-    const rem = e.planned - e.actual;
-    const pct = e.planned>0 ? Math.round(e.actual/e.planned*100) : 0;
-    const cls = pct>90?'r':pct>60?'a':pct>0?'g':'n';
-    const lbl = pct>90?'تجاوز':pct>60?'مرتفع':pct>0?'طبيعي':'لم يُصرف';
-    return `<tr>
-      <td style="font-size:11px;color:var(--text-muted);font-weight:600">${e.code}</td>
-      <td style="font-weight:600">${e.name}</td>
-      <td>${fmt(e.planned)}</td>
-      <td style="font-weight:700;color:var(--blue)">${fmt(e.actual)}</td>
-      <td style="color:${rem<0?'var(--danger)':'var(--text-primary)'}">${fmt(rem)}</td>
-      <td>
-        <div class="mini-prog">
-          <div class="mini-track"><div class="mini-fill" style="width:${Math.min(100,pct)}%;background:${pct>90?'var(--danger)':pct>60?'var(--amber)':'var(--success)'}"></div></div>
-          <span style="font-size:11px">${pct}%</span>
-        </div>
-      </td>
-      <td><span class="chip chip-${cls}">${lbl}</span></td>
-    </tr>`;
-  }).join('');
-  document.getElementById('budget-tfoot').innerHTML = `<tr>
-    <td colspan="2">الإجمالي</td>
-    <td>${fmt(totP)}</td>
-    <td style="color:var(--blue)">${fmt(totA)}</td>
-    <td>${fmt(totP-totA)}</td>
-    <td colspan="2" style="color:var(--success)">${Math.round(totA/totP*100)}% مُنفَّذ</td>
-  </tr>`;
-}
-
-// ─────────────────────── UPDATE FORMS ───────────────────────
-function renderUpdateForms() {
-  document.getElementById('sliders-section').innerHTML = programs.map((p,i) => `
-    <div class="update-row">
-      <span class="update-label" title="${p.name}">${p.name.length>22?p.name.slice(0,22)+'...':p.name}</span>
-      <input type="range" min="0" max="100" step="1" value="${p.completion}" id="sl-${i}"
-        oninput="document.getElementById('sv-${i}').textContent=this.value+'%'"
-        style="accent-color:${AXES[p.axis].color}">
-      <span class="update-val" id="sv-${i}" style="color:${AXES[p.axis].color}">${p.completion}%</span>
-    </div>`).join('');
-
-  document.getElementById('expenses-section').innerHTML = expenses.map((e,i) => `
-    <div class="update-row">
-      <span class="update-label" title="${e.name}">${e.name.length>20?e.name.slice(0,20)+'...':e.name}</span>
-      <input type="number" min="0" max="${Math.round(e.planned*1.15)}" value="${e.actual}" id="ea-${i}">
-      <span class="update-max">/ ${fmt(e.planned)}</span>
-    </div>`).join('');
-
-  document.getElementById('beneficiaries-section').innerHTML = programs.map((p,i) => `
-    <div class="update-row">
-      <span class="update-label" title="${p.name}">${p.name.length>22?p.name.slice(0,22)+'...':p.name}</span>
-      <input type="number" min="0" max="${p.targetBen}" value="${p.beneficiaries}" id="ben-${i}">
-      <span class="update-max">/ ${p.targetBen} مستهدف</span>
-    </div>`).join('');
-}
-
-function saveUpdates() {
-  programs.forEach((p,i) => {
-    const sl = document.getElementById('sl-'+i);
-    const bn = document.getElementById('ben-'+i);
-    if (sl) p.completion = +sl.value;
-    if (bn) p.beneficiaries = Math.min(p.targetBen, +bn.value||0);
-  });
-  expenses.forEach((e,i) => {
-    const ea = document.getElementById('ea-'+i);
-    if (ea) e.actual = Math.min(e.planned*1.15, +ea.value||0);
-  });
-  saveData();
-  renderAll();
-  showToast('تم حفظ التحديثات بنجاح');
-}
-
-function resetData() {
-  if (!confirm('هل تريد إعادة تعيين جميع البيانات إلى القيم الافتراضية؟')) return;
-  programs = DEFAULT_PROGRAMS.map(x=>({...x}));
-  expenses = DEFAULT_EXPENSES.map(x=>({...x}));
-  saveData();
-  renderAll();
-  renderUpdateForms();
-  showToast('تم إعادة تعيين البيانات');
-}
-
-// ─────────────────────── RENDER ALL ───────────────────────
-function renderAll() {
-  document.getElementById('last-update').textContent = new Date().toLocaleDateString('ar-SA',{day:'numeric',month:'long',year:'numeric'});
-  renderMetrics();
-  renderAxisCards();
-  renderBudgetChart();
-  renderProgBars();
-  renderProgramsPage();
-  renderBudgetTable();
-  renderSidebarAxes();
-  const total = programs.reduce((a,p)=>a+p.completion,0)/programs.length;
-  document.getElementById('overall-status').textContent = total >= 80 ? 'أداء ممتاز' : total >= 50 ? 'جارٍ التنفيذ' : 'في مرحلة البداية';
-}
-
-// ─────────────────────── INIT ───────────────────────
-loadData();
-renderAll();
-</script>
 </body>
 </html>
