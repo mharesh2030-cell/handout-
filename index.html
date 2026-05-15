@@ -3,519 +3,549 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تقرير مبيعات مؤسسة رهيف</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<title>تقرير مبيعات التطبيقات — مؤسسة رهيف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #C9A84C;
-    --gold-light: #E8CC7A;
-    --gold-pale: #F5EDCC;
-    --dark: #1A1208;
-    --dark2: #2D1F0A;
-    --brown: #5C3D11;
-    --cream: #FBF6EC;
-    --accent: #8B4513;
-    --green: #2D6A4F;
-    --green-light: #52B788;
-    --red: #AE2D2D;
-    --blue: #1D4E89;
-    --text: #2C1810;
-    --shadow: 0 4px 20px rgba(201,168,76,0.15);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Tajawal', 'Cairo', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    direction: rtl;
-  }
+:root {
+  --bg: #0F1117;
+  --card: #181C27;
+  --card2: #1E2336;
+  --border: rgba(255,255,255,0.07);
+  --mrsool: #00C48C;
+  --mrsool-dim: rgba(0,196,140,0.12);
+  --hunger: #E8321C;
+  --hunger-dim: rgba(232,50,28,0.12);
+  --jahez: #F5A623;
+  --jahez-dim: rgba(245,166,35,0.12);
+  --total: #7C6EF5;
+  --total-dim: rgba(124,110,245,0.12);
+  --text: #E8EAF0;
+  --muted: #8890A8;
+  --white: #FFFFFF;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Tajawal', 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+  min-height: 100vh;
+}
 
-  /* HEADER */
-  .header {
-    background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 40%, var(--brown) 100%);
-    padding: 48px 40px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -60px; left: -60px;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -40px; right: -40px;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-  .header-inner { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
-  .brand-badge {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: rgba(201,168,76,0.15);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 4px;
-    padding: 6px 14px;
-    margin-bottom: 20px;
-  }
-  .brand-badge span { color: var(--gold-light); font-size: 12px; letter-spacing: 2px; font-weight: 500; text-transform: uppercase; }
-  .header h1 {
-    font-family: 'Cairo', sans-serif;
-    font-size: 42px; font-weight: 900;
-    color: #fff;
-    line-height: 1.2;
-    margin-bottom: 8px;
-  }
-  .header h1 span { color: var(--gold); }
-  .header-sub { color: rgba(255,255,255,0.6); font-size: 16px; font-weight: 300; }
-  .header-meta {
-    display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap;
-  }
-  .meta-item { display: flex; flex-direction: column; gap: 3px; }
-  .meta-label { color: rgba(255,255,255,0.45); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; }
-  .meta-value { color: var(--gold-light); font-size: 14px; font-weight: 600; }
+/* HEADER */
+.header {
+  padding: 48px 40px 36px;
+  background: linear-gradient(180deg, #12162A 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(124,110,245,0.08) 0%, transparent 65%);
+  border-radius: 50%;
+}
+.header-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index:1; }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(124,110,245,0.15);
+  border: 1px solid rgba(124,110,245,0.3);
+  border-radius: 20px; padding: 5px 14px;
+  font-size: 11px; color: #A89EF8; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.header h1 {
+  font-family: 'Cairo', sans-serif;
+  font-size: 38px; font-weight: 900; color: var(--white);
+  line-height: 1.2; margin-bottom: 6px;
+}
+.header h1 em { color: var(--total); font-style: normal; }
+.header p { color: var(--muted); font-size: 15px; }
+.header-pills { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.pill {
+  background: var(--card2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 16px;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.pill-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.pill-val { font-size: 14px; font-weight: 700; color: var(--white); }
 
-  /* CONTENT */
-  .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+/* CONTAINER */
+.container { max-width: 1200px; margin: 0 auto; padding: 36px 24px; }
 
-  /* KPI CARDS */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-  .kpi-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: var(--shadow);
-    border-top: 3px solid var(--gold);
-    position: relative;
-    overflow: hidden;
-  }
-  .kpi-card::after {
-    content: '';
-    position: absolute;
-    bottom: -20px; left: -20px;
-    width: 80px; height: 80px;
-    background: var(--gold-pale);
-    border-radius: 50%;
-    opacity: 0.5;
-  }
-  .kpi-card.green { border-top-color: var(--green); }
-  .kpi-card.blue { border-top-color: var(--blue); }
-  .kpi-card.brown { border-top-color: var(--accent); }
-  .kpi-label { font-size: 12px; color: #888; letter-spacing: 0.5px; margin-bottom: 8px; font-weight: 500; }
-  .kpi-value {
-    font-family: 'Cairo', sans-serif;
-    font-size: 32px; font-weight: 900;
-    color: var(--dark);
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .kpi-unit { font-size: 14px; color: #aaa; }
-  .kpi-sub { font-size: 12px; color: var(--green); margin-top: 6px; font-weight: 600; }
+/* PLATFORM CARDS */
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+@media(max-width:700px){ .platform-grid{ grid-template-columns:1fr; } }
 
-  /* SECTION TITLE */
-  .section-title {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 20px; margin-top: 40px;
-  }
-  .section-title h2 {
-    font-family: 'Cairo', sans-serif;
-    font-size: 22px; font-weight: 700;
-    color: var(--dark);
-  }
-  .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
-  .section-icon {
-    width: 36px; height: 36px;
-    background: linear-gradient(135deg, var(--dark), var(--brown));
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; flex-shrink: 0;
-  }
+.platform-card {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 100%; height: 3px;
+  border-radius: 16px 16px 0 0;
+}
+.platform-card.mrsool::before { background: var(--mrsool); }
+.platform-card.hunger::before { background: var(--hunger); }
+.platform-card.jahez::before { background: var(--jahez); }
 
-  /* TABLE */
-  .table-wrap {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-    margin-bottom: 32px;
-  }
-  table { width: 100%; border-collapse: collapse; }
-  thead th {
-    background: linear-gradient(135deg, var(--dark), var(--dark2));
-    color: var(--gold-light);
-    padding: 14px 16px;
-    font-size: 13px; font-weight: 600;
-    letter-spacing: 0.3px;
-    text-align: center;
-    white-space: nowrap;
-  }
-  tbody tr { border-bottom: 1px solid #f0ebe0; transition: background 0.15s; }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: #fdf9f0; }
-  tbody td {
-    padding: 12px 16px;
-    font-size: 13px;
-    text-align: center;
-    color: var(--text);
-  }
-  tbody td:first-child { font-weight: 600; color: var(--brown); text-align: right; }
-  .tfoot-row td {
-    background: var(--gold-pale);
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--dark);
-    border-top: 2px solid var(--gold);
-  }
-  .num { font-family: 'Cairo', sans-serif; font-variant-numeric: tabular-nums; }
-  .badge-pos { background: #e8f4f8; color: #1D4E89; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-  .badge-mrsool { background: #fff0e8; color: #E05D00; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-  .badge-hunger { background: #ffe8e8; color: #C0392B; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-  .badge-jahez { background: #e8f5e9; color: #2D6A4F; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-  .up { color: var(--green); }
-  .dn { color: var(--red); }
+.platform-logo { font-size: 28px; margin-bottom: 12px; }
+.platform-name { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.platform-period { font-size: 11px; color: var(--muted); margin-bottom: 18px; }
 
-  /* CHANNEL SUMMARY */
-  .channel-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-  .channel-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 24px 20px;
-    box-shadow: var(--shadow);
-    text-align: center;
-  }
-  .channel-icon { font-size: 32px; margin-bottom: 10px; }
-  .channel-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
-  .channel-amount { font-family: 'Cairo', sans-serif; font-size: 26px; font-weight: 900; color: var(--gold); }
-  .channel-pct {
-    font-size: 12px; color: #888; margin-top: 4px;
-    background: var(--gold-pale); border-radius: 20px; padding: 2px 10px; display: inline-block;
-  }
-  .channel-orders { font-size: 12px; color: #666; margin-top: 6px; }
+.stat-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.stat-label { font-size: 12px; color: var(--muted); }
+.stat-val { font-size: 15px; font-weight: 700; font-family: 'Cairo', sans-serif; }
+.stat-val.mrsool { color: var(--mrsool); }
+.stat-val.hunger { color: var(--hunger); }
+.stat-val.jahez { color: var(--jahez); }
 
-  /* PAYMENT BREAKDOWN */
-  .pay-row {
-    display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
-  }
-  .pay-label { width: 100px; font-size: 13px; color: var(--text); font-weight: 600; flex-shrink: 0; }
-  .pay-bar-wrap { flex: 1; height: 20px; background: #f0ebe0; border-radius: 10px; overflow: hidden; }
-  .pay-bar { height: 100%; border-radius: 10px; }
-  .pay-amount { width: 100px; text-align: left; font-size: 13px; font-weight: 700; color: var(--dark); font-family: 'Cairo', sans-serif; }
+.divider { height: 1px; background: var(--border); margin: 14px 0; }
 
-  /* NOTE BOX */
-  .note-box {
-    background: linear-gradient(135deg, #fff8e8, #fff3d4);
-    border: 1px solid var(--gold);
-    border-right: 4px solid var(--gold);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-bottom: 32px;
-    font-size: 13px; color: var(--dark); line-height: 1.8;
-  }
-  .note-box strong { color: var(--brown); }
+.gross-label { font-size: 11px; color: var(--muted); }
+.gross-val { font-size: 28px; font-weight: 900; font-family: 'Cairo', sans-serif; margin-top: 4px; }
+.gross-unit { font-size: 12px; font-weight: 400; color: var(--muted); margin-right: 4px; }
 
-  /* YEARLY COMPARE */
-  .year-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 32px; }
-  .year-card {
-    background: #fff; border-radius: 12px; padding: 24px;
-    box-shadow: var(--shadow); text-align: center;
-  }
-  .year-label { font-size: 30px; font-weight: 900; color: var(--gold); font-family: 'Cairo', sans-serif; }
-  .year-sales { font-size: 22px; font-weight: 700; color: var(--dark); margin: 8px 0 4px; font-family: 'Cairo', sans-serif; }
-  .year-orders { font-size: 13px; color: #888; }
-  .year-note { font-size: 11px; color: var(--red); margin-top: 4px; font-style: italic; }
+.net-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; margin-top: 8px;
+}
+.mrsool .net-badge { background: var(--mrsool-dim); color: var(--mrsool); }
+.hunger .net-badge { background: var(--hunger-dim); color: var(--hunger); }
+.jahez .net-badge { background: var(--jahez-dim); color: var(--jahez); }
 
-  /* PRODUCTS TOP */
-  .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media(max-width:600px){ .prod-grid{grid-template-columns:1fr;} .year-grid{grid-template-columns:1fr;} }
+/* SECTION */
+.section-head {
+  display: flex; align-items: center; gap: 12px;
+  margin: 36px 0 18px;
+}
+.section-head h2 { font-family: 'Cairo', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); }
+.section-line { flex:1; height:1px; background: var(--border); }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink:0; }
 
-  .prod-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: var(--shadow); }
-  .prod-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 14px; border-bottom: 2px solid var(--gold-pale); padding-bottom: 10px; }
-  .prod-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-  .prod-rank { width: 24px; height: 24px; border-radius: 50%; background: var(--gold); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .prod-name { flex: 1; font-size: 13px; color: var(--text); margin: 0 10px; }
-  .prod-sales { font-size: 13px; font-weight: 700; color: var(--dark); font-family: 'Cairo', sans-serif; }
+/* MONTHLY TABLE */
+.table-wrap {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+table { width:100%; border-collapse:collapse; }
+thead th {
+  background: var(--card2);
+  padding: 13px 16px;
+  font-size: 12px; font-weight: 600;
+  color: var(--muted); letter-spacing: 0.5px;
+  text-align: center; white-space: nowrap;
+}
+thead th:first-child { text-align: right; }
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+tbody tr:last-child { border: none; }
+tbody tr:hover { background: rgba(255,255,255,0.025); }
+tbody td { padding: 12px 16px; font-size: 13px; text-align: center; }
+tbody td:first-child { text-align: right; color: var(--muted); font-size: 13px; }
+.num { font-family: 'Cairo', sans-serif; font-variant-numeric: tabular-nums; }
+.c-m { color: var(--mrsool); font-weight: 600; }
+.c-h { color: var(--hunger); font-weight: 600; }
+.c-j { color: var(--jahez); font-weight: 600; }
+.c-t { color: var(--total); font-weight: 700; }
+.tfoot-row td {
+  background: rgba(124,110,245,0.08);
+  font-weight: 700; font-size: 14px;
+  color: var(--white);
+  border-top: 1px solid rgba(124,110,245,0.3);
+}
+.dash { color: #3a3f52; }
 
-  /* FOOTER */
-  .footer {
-    background: var(--dark);
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 24px;
-    font-size: 12px;
-    margin-top: 40px;
-  }
-  .footer span { color: var(--gold); }
+/* BAR CHART */
+.bar-section { margin-bottom: 28px; }
+.bar-item { display:flex; align-items:center; gap:12px; margin-bottom:14px; }
+.bar-month { width: 90px; font-size:12px; color:var(--muted); text-align:right; flex-shrink:0; }
+.bar-track { flex:1; height:28px; background:var(--card2); border-radius:6px; overflow:hidden; display:flex; gap:2px; }
+.bar-seg { height:100%; border-radius:4px; transition:width 0.3s; display:flex; align-items:center; justify-content:center; }
+.bar-seg span { font-size:10px; font-weight:700; color:rgba(255,255,255,0.85); padding:0 4px; white-space:nowrap; overflow:hidden; }
+.bar-total { width:75px; font-size:12px; font-weight:700; color:var(--white); font-family:'Cairo',sans-serif; text-align:left; flex-shrink:0; }
+
+/* HUNGER DETAIL */
+.hunger-detail-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:28px; }
+@media(max-width:600px){ .hunger-detail-grid{grid-template-columns:1fr;} }
+
+.detail-card { background:var(--card); border-radius:14px; border:1px solid var(--border); padding:22px; }
+.detail-title { font-size:14px; font-weight:700; color:var(--white); margin-bottom:16px; padding-bottom:10px; border-bottom:1px solid var(--border); }
+
+.mini-stat { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+.mini-label { font-size:12px; color:var(--muted); }
+.mini-val { font-size:14px; font-weight:700; font-family:'Cairo',sans-serif; color:var(--white); }
+.mini-val.red { color:var(--hunger); }
+.mini-val.green { color:var(--mrsool); }
+
+/* PROGRESS RING style bars */
+.pay-bar-wrap { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+.pay-label2 { width:80px; font-size:12px; color:var(--muted); flex-shrink:0; }
+.pay-track { flex:1; height:8px; background:var(--card2); border-radius:4px; overflow:hidden; }
+.pay-fill { height:100%; border-radius:4px; }
+.pay-pct { width:40px; font-size:12px; font-weight:700; text-align:left; }
+
+/* MRSOOL PRODUCTS */
+.prod-list { }
+.prod-row { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.prod-rank2 {
+  width:22px; height:22px; border-radius:50%;
+  background:var(--mrsool-dim); color:var(--mrsool);
+  font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.prod-name2 { flex:1; font-size:13px; color:var(--text); }
+.prod-bar2 { width:80px; height:6px; background:var(--card2); border-radius:3px; overflow:hidden; }
+.prod-fill2 { height:100%; border-radius:3px; background:var(--mrsool); }
+.prod-sar { width:60px; font-size:12px; font-weight:700; color:var(--mrsool); font-family:'Cairo',sans-serif; text-align:left; }
+
+/* SUMMARY BANNER */
+.summary-banner {
+  background: linear-gradient(135deg, rgba(124,110,245,0.1), rgba(124,110,245,0.04));
+  border: 1px solid rgba(124,110,245,0.25);
+  border-radius: 14px; padding: 24px; margin-bottom: 28px;
+}
+.summary-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+@media(max-width:600px){ .summary-grid{grid-template-columns:repeat(2,1fr);} }
+.sum-item { text-align:center; }
+.sum-val { font-family:'Cairo',sans-serif; font-size:24px; font-weight:900; color:var(--total); }
+.sum-label { font-size:11px; color:var(--muted); margin-top:4px; }
+
+/* NOTE */
+.note { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-right:3px solid var(--jahez); border-radius:8px; padding:14px 18px; font-size:12px; color:var(--muted); line-height:1.9; margin-bottom:28px; }
+.note strong { color:var(--text); }
+
+/* FOOTER */
+.footer { text-align:center; padding:24px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); margin-top:20px; }
+.footer em { color:var(--total); font-style:normal; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-inner">
-    <div class="brand-badge"><span>📊 تقرير مبيعات شامل</span></div>
-    <h1>مؤسسة <span>رهيف</span> لتقديم الوجبات</h1>
-    <div class="header-sub">سجل صامطة، جازان — من بداية التشغيل حتى فبراير 2026</div>
-    <div class="header-meta">
-      <div class="meta-item"><span class="meta-label">فترة التقرير</span><span class="meta-value">أبريل 2024 — فبراير 2026</span></div>
-      <div class="meta-item"><span class="meta-label">المدة الكاملة</span><span class="meta-value">22 شهراً</span></div>
-      <div class="meta-item"><span class="meta-label">رقم الحساب</span><span class="meta-value">350000010006086396836</span></div>
-      <div class="meta-item"><span class="meta-label">تاريخ الإصدار</span><span class="meta-value">مايو 2026</span></div>
+    <div class="tag">📦 تقرير التوصيل والتطبيقات</div>
+    <h1>مبيعات التطبيقات <em>الثلاثة</em></h1>
+    <p>مؤسسة رهيف لتقديم الوجبات — صامطة، جازان</p>
+    <div class="header-pills">
+      <div class="pill"><span class="pill-label">الفترة الكاملة</span><span class="pill-val">مايو 2024 — فبراير 2026</span></div>
+      <div class="pill"><span class="pill-label">عدد التطبيقات</span><span class="pill-val">3 منصات</span></div>
+      <div class="pill"><span class="pill-label">إجمالي التوصيل (إجمالي)</span><span class="pill-val">194,880 ر.س</span></div>
+      <div class="pill"><span class="pill-label">إجمالي التوصيل (صافي بنكي)</span><span class="pill-val">145,367 ر.س</span></div>
     </div>
   </div>
 </div>
 
 <div class="container">
 
-  <!-- KPIs -->
-  <div class="kpi-grid">
-    <div class="kpi-card">
-      <div class="kpi-label">إجمالي المبيعات الكلية</div>
-      <div class="kpi-value num">530,333</div>
-      <div class="kpi-unit">ريال سعودي</div>
-      <div class="kpi-sub">جميع قنوات البيع</div>
+  <!-- PLATFORM CARDS -->
+  <div class="section-head">
+    <div class="dot" style="background:var(--total);"></div>
+    <h2>ملخص المنصات</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="platform-grid">
+    <!-- MRSOOL -->
+    <div class="platform-card mrsool">
+      <div class="platform-logo">🟢</div>
+      <div class="platform-name">مرسول</div>
+      <div class="platform-period">أبريل 2024 — يناير 2026</div>
+      <div class="gross-label">إجمالي المبيعات</div>
+      <div class="gross-val c-m num">63,101 <span class="gross-unit">ر.س</span></div>
+      <div class="net-badge">💳 صافي بنكي: 41,342 ر.س</div>
+      <div class="divider"></div>
+      <div class="stat-row"><span class="stat-label">متوسط قيمة الطلب</span><span class="stat-val mrsool num">43.25 ر.س</span></div>
+      <div class="stat-row"><span class="stat-label">الفترة</span><span class="stat-val mrsool">22 شهراً</span></div>
+      <div class="stat-row"><span class="stat-label">نسبة من إجمالي التوصيل</span><span class="stat-val mrsool">32.4%</span></div>
     </div>
-    <div class="kpi-card green">
-      <div class="kpi-label">مبيعات نقطة البيع (المحل)</div>
-      <div class="kpi-value num">384,966</div>
-      <div class="kpi-unit">ريال — 72.6%</div>
-      <div class="kpi-sub">26,145 طلب</div>
+
+    <!-- HUNGER -->
+    <div class="platform-card hunger">
+      <div class="platform-logo">🔴</div>
+      <div class="platform-name">هنقر ستيشن</div>
+      <div class="platform-period">فبراير 2025 — فبراير 2026</div>
+      <div class="gross-label">إجمالي المبيعات</div>
+      <div class="gross-val c-h num">65,778 <span class="gross-unit">ر.س</span></div>
+      <div class="net-badge">💳 صافي بنكي: 44,530 ر.س</div>
+      <div class="divider"></div>
+      <div class="stat-row"><span class="stat-label">إجمالي الطلبات</span><span class="stat-val hunger num">1,758</span></div>
+      <div class="stat-row"><span class="stat-label">طلبات ملغاة</span><span class="stat-val hunger">27 (1.5%)</span></div>
+      <div class="stat-row"><span class="stat-label">متوسط قيمة الطلب</span><span class="stat-val hunger">37.4 ر.س</span></div>
+      <div class="stat-row"><span class="stat-label">نسبة من إجمالي التوصيل</span><span class="stat-val hunger">33.7%</span></div>
     </div>
-    <div class="kpi-card blue">
-      <div class="kpi-label">إجمالي مبيعات التوصيل</div>
-      <div class="kpi-value num">145,367</div>
-      <div class="kpi-unit">ريال — 27.4%</div>
-      <div class="kpi-sub">مرسول + هنقر + جاهز</div>
+
+    <!-- JAHEZ -->
+    <div class="platform-card jahez">
+      <div class="platform-logo">🟠</div>
+      <div class="platform-name">جاهز</div>
+      <div class="platform-period">مايو 2024 — فبراير 2026</div>
+      <div class="gross-label">صافي مدفوعات بنكية</div>
+      <div class="gross-val c-j num">59,495 <span class="gross-unit">ر.س</span></div>
+      <div class="net-badge">✅ مُحتسب من كشف الحساب</div>
+      <div class="divider"></div>
+      <div class="stat-row"><span class="stat-label">عدد تحويلات بنكية</span><span class="stat-val jahez">69 تحويل</span></div>
+      <div class="stat-row"><span class="stat-label">الفترة</span><span class="stat-val jahez">22 شهراً</span></div>
+      <div class="stat-row"><span class="stat-label">نسبة من إجمالي التوصيل</span><span class="stat-val jahez">33.9%</span></div>
     </div>
-    <div class="kpi-card brown">
-      <div class="kpi-label">متوسط المبيعات الشهرية</div>
-      <div class="kpi-value num">24,106</div>
-      <div class="kpi-unit">ريال / شهر</div>
-      <div class="kpi-sub">22 شهر تشغيل</div>
+  </div>
+
+  <!-- SUMMARY BANNER -->
+  <div class="summary-banner">
+    <div class="summary-grid">
+      <div class="sum-item">
+        <div class="sum-val num">194,880</div>
+        <div class="sum-label">إجمالي مبيعات التطبيقات (ر.س)</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-val num">145,367</div>
+        <div class="sum-label">صافي مستلم بنكياً (ر.س)</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-val num">49,513</div>
+        <div class="sum-label">عمولات المنصات (ر.س)</div>
+      </div>
+      <div class="sum-item">
+        <div class="sum-val">25.4%</div>
+        <div class="sum-label">متوسط نسبة العمولة</div>
+      </div>
     </div>
   </div>
 
   <!-- NOTE -->
-  <div class="note-box">
-    ⚠️ <strong>ملاحظة منهجية:</strong> تمت مراجعة جميع الملفات مع الأخذ بعين الاعتبار <strong>تكرار الفترات الزمنية</strong> بين الملفات وتجنب الازدواجية.
-    مبيعات نقطة البيع مصدرها نظام <strong>نقطة (Nugttah)</strong> للفترة كاملة. مبيعات التوصيل محسوبة من <strong>التحويلات الفعلية الواردة</strong> في كشف الحساب البنكي (الراجحي) للحصول على القيم الصافية بعد خصم العمولات، وليس الأرقام الإجمالية من تطبيقات التوصيل.
-  </div>
-
-  <!-- CHANNELS -->
-  <div class="section-title">
-    <div class="section-icon">🏪</div>
-    <h2>توزيع المبيعات حسب القناة</h2>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="channel-grid">
-    <div class="channel-card">
-      <div class="channel-icon">🏪</div>
-      <div class="channel-name">نقطة البيع (المحل)</div>
-      <div class="channel-amount num">384,966 ر.س</div>
-      <div class="channel-pct">72.6% من الإجمالي</div>
-      <div class="channel-orders">26,145 طلب | متوسط الطلب: 14.7 ر.س</div>
-    </div>
-    <div class="channel-card">
-      <div class="channel-icon">🟠</div>
-      <div class="channel-name">جاهز (هنقر ستيشن)</div>
-      <div class="channel-amount num">59,495 ر.س</div>
-      <div class="channel-pct">11.2% من الإجمالي</div>
-      <div class="channel-orders">مدفوعات صافية للبنك</div>
-    </div>
-    <div class="channel-card">
-      <div class="channel-icon">🔴</div>
-      <div class="channel-name">هنقر ستيشن</div>
-      <div class="channel-amount num">44,530 ر.س</div>
-      <div class="channel-pct">8.4% من الإجمالي</div>
-      <div class="channel-orders">مدفوعات صافية للبنك</div>
-    </div>
-    <div class="channel-card">
-      <div class="channel-icon">🟢</div>
-      <div class="channel-name">مرسول</div>
-      <div class="channel-amount num">41,342 ر.س</div>
-      <div class="channel-pct">7.8% من الإجمالي</div>
-      <div class="channel-orders">مدفوعات صافية للبنك</div>
-    </div>
-  </div>
-
-  <!-- PAYMENT METHODS (POS) -->
-  <div class="section-title">
-    <div class="section-icon">💳</div>
-    <h2>طرق الدفع في نقطة البيع</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="table-wrap" style="padding:24px;">
-    <div class="pay-row">
-      <div class="pay-label">مدى (بطاقة)</div>
-      <div class="pay-bar-wrap"><div class="pay-bar" style="width:94.3%; background:linear-gradient(90deg,#1D4E89,#4A90D9);"></div></div>
-      <div class="pay-amount">363,115 ر.س</div>
-    </div>
-    <div class="pay-row">
-      <div class="pay-label">نقدي</div>
-      <div class="pay-bar-wrap"><div class="pay-bar" style="width:4.7%; background:linear-gradient(90deg,#2D6A4F,#52B788);"></div></div>
-      <div class="pay-amount">18,005 ر.س</div>
-    </div>
-    <div class="pay-row">
-      <div class="pay-label">فيزا وأخرى</div>
-      <div class="pay-bar-wrap"><div class="pay-bar" style="width:0.9%; background:linear-gradient(90deg,#C9A84C,#E8CC7A);"></div></div>
-      <div class="pay-amount">1,846 ر.س</div>
-    </div>
-  </div>
-
-  <!-- ANNUAL -->
-  <div class="section-title">
-    <div class="section-icon">📅</div>
-    <h2>المقارنة السنوية — نقطة البيع</h2>
-    <div class="section-line"></div>
-  </div>
-  <div class="year-grid">
-    <div class="year-card">
-      <div class="year-label">2024</div>
-      <div class="year-sales num">183,119 ر.س</div>
-      <div class="year-orders">11,956 طلب | 9 أشهر (أبريل–ديسمبر)</div>
-      <div class="year-note">* بداية التشغيل أبريل 2024</div>
-    </div>
-    <div class="year-card">
-      <div class="year-label">2025</div>
-      <div class="year-sales num">190,409 ر.س</div>
-      <div class="year-orders">13,449 طلب | سنة كاملة</div>
-      <div class="year-note">نمو +3.9% مقارنة بـ 2024 المعدّل</div>
-    </div>
-    <div class="year-card">
-      <div class="year-label">2026</div>
-      <div class="year-sales num">11,438 ر.س</div>
-      <div class="year-orders">740 طلب | يناير فقط</div>
-      <div class="year-note">* البيانات حتى يناير 2026</div>
-    </div>
+  <div class="note">
+    ⚠️ <strong>ملاحظة:</strong> مبيعات مرسول وهنقر هي الأرقام <strong>الإجمالية</strong> من تطبيقاتها، بينما المبالغ المستلمة بنكياً أقل بعد خصم العمولات. جاهز محسوب بالكامل من التحويلات البنكية الفعلية (صافي). الفرق الإجمالي بين الإجمالي والصافي = <strong>49,513 ر.س</strong> عمولات للمنصات.
   </div>
 
   <!-- MONTHLY TABLE -->
-  <div class="section-title">
-    <div class="section-icon">📋</div>
-    <h2>السجل الشهري التفصيلي</h2>
+  <div class="section-head">
+    <div class="dot" style="background:var(--total);"></div>
+    <h2>التفاصيل الشهرية — صافي مستلم بنكياً</h2>
     <div class="section-line"></div>
   </div>
+
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
           <th>الشهر</th>
-          <th>نقطة البيع</th>
-          <th>عدد الطلبات</th>
-          <th>مرسول (صافي)</th>
-          <th>هنقر (صافي)</th>
-          <th>جاهز (صافي)</th>
-          <th>إجمالي التوصيل</th>
-          <th>الإجمالي الكلي</th>
+          <th style="color:var(--mrsool)">🟢 مرسول</th>
+          <th style="color:var(--hunger)">🔴 هنقر</th>
+          <th style="color:var(--jahez)">🟠 جاهز</th>
+          <th style="color:var(--total)">الإجمالي</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>أبريل 2024</td><td class="num">13,852</td><td class="num">1,018</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">13,852</td></tr>
-        <tr><td>مايو 2024</td><td class="num">18,483</td><td class="num">1,340</td><td class="num">—</td><td class="num">—</td><td class="num">2,147</td><td class="num">2,147</td><td class="num">20,630</td></tr>
-        <tr><td>يونيو 2024</td><td class="num">18,128</td><td class="num">1,156</td><td class="num">639</td><td class="num">572</td><td class="num">1,238</td><td class="num">2,449</td><td class="num">20,577</td></tr>
-        <tr><td>يوليو 2024</td><td class="num">21,069</td><td class="num">1,380</td><td class="num">7,292</td><td class="num">1,009</td><td class="num">5,913</td><td class="num">14,214</td><td class="num"><strong>35,283</strong></td></tr>
-        <tr><td>أغسطس 2024</td><td class="num">23,942</td><td class="num">1,429</td><td class="num">4,322</td><td class="num">1,590</td><td class="num">4,468</td><td class="num">10,380</td><td class="num">34,322</td></tr>
-        <tr><td>سبتمبر 2024</td><td class="num">18,991</td><td class="num">1,332</td><td class="num">3,523</td><td class="num">1,300</td><td class="num">3,709</td><td class="num">8,532</td><td class="num">27,523</td></tr>
-        <tr><td>أكتوبر 2024</td><td class="num">24,159</td><td class="num">1,537</td><td class="num">2,848</td><td class="num">1,245</td><td class="num">474</td><td class="num">4,567</td><td class="num">28,726</td></tr>
-        <tr><td>نوفمبر 2024</td><td class="num">22,805</td><td class="num">1,413</td><td class="num">3,204</td><td class="num">2,058</td><td class="num">4,045</td><td class="num">9,307</td><td class="num">32,112</td></tr>
-        <tr><td>ديسمبر 2024</td><td class="num">21,690</td><td class="num">1,351</td><td class="num">3,116</td><td class="num">2,505</td><td class="num">2,867</td><td class="num">8,488</td><td class="num">30,178</td></tr>
-        <tr><td>يناير 2025</td><td class="num">17,957</td><td class="num">1,230</td><td class="num">3,260</td><td class="num">2,010</td><td class="num">3,313</td><td class="num">8,583</td><td class="num">26,540</td></tr>
-        <tr><td>فبراير 2025</td><td class="num">17,661</td><td class="num">1,185</td><td class="num">2,235</td><td class="num">1,981</td><td class="num">2,058</td><td class="num">6,274</td><td class="num">23,935</td></tr>
-        <tr><td style="color:var(--red)">مارس 2025 ⚠️</td><td class="num" style="color:var(--red)">5,070</td><td class="num">429</td><td class="num">1,501</td><td class="num">921</td><td class="num">1,911</td><td class="num">4,333</td><td class="num" style="color:var(--red)">9,403</td></tr>
-        <tr><td>أبريل 2025</td><td class="num">20,123</td><td class="num">1,308</td><td class="num">342</td><td class="num">2,639</td><td class="num">4,777</td><td class="num">7,758</td><td class="num">27,881</td></tr>
-        <tr><td>مايو 2025</td><td class="num">15,531</td><td class="num">1,020</td><td class="num">1,548</td><td class="num">2,901</td><td class="num">6,082</td><td class="num">10,531</td><td class="num">26,062</td></tr>
-        <tr><td>يونيو 2025</td><td class="num">15,952</td><td class="num">1,109</td><td class="num">974</td><td class="num">2,293</td><td class="num">3,127</td><td class="num">6,394</td><td class="num">22,346</td></tr>
-        <tr><td>يوليو 2025</td><td class="num">15,238</td><td class="num">1,095</td><td class="num">1,308</td><td class="num">2,762</td><td class="num">3,390</td><td class="num">7,460</td><td class="num">22,698</td></tr>
-        <tr><td>أغسطس 2025</td><td class="num">17,567</td><td class="num">1,258</td><td class="num">1,789</td><td class="num">3,608</td><td class="num">3,645</td><td class="num">9,042</td><td class="num">26,609</td></tr>
-        <tr><td>سبتمبر 2025</td><td class="num">16,210</td><td class="num">1,229</td><td class="num">1,325</td><td class="num">2,955</td><td class="num">686</td><td class="num">4,966</td><td class="num">21,176</td></tr>
-        <tr><td>أكتوبر 2025</td><td class="num">15,628</td><td class="num">1,189</td><td class="num">713</td><td class="num">2,341</td><td class="num">1,405</td><td class="num">4,459</td><td class="num">20,087</td></tr>
-        <tr><td>نوفمبر 2025</td><td class="num">14,717</td><td class="num">1,122</td><td class="num">689</td><td class="num">2,341</td><td class="num">966</td><td class="num">3,996</td><td class="num">18,713</td></tr>
-        <tr><td>ديسمبر 2025</td><td class="num">18,756</td><td class="num">1,275</td><td class="num">713</td><td class="num">2,610</td><td class="num">1,373</td><td class="num">4,696</td><td class="num">23,452</td></tr>
-        <tr><td>يناير 2026</td><td class="num">11,438</td><td class="num">740</td><td class="num">—</td><td class="num">3,578</td><td class="num">820</td><td class="num">4,398</td><td class="num">15,836</td></tr>
-        <tr><td>فبراير 2026</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">1,311</td><td class="num">1,081</td><td class="num">2,392</td><td class="num">2,392</td></tr>
+        <tr><td>مايو 2024</td><td class="dash num">—</td><td class="dash num">—</td><td class="num c-j">2,147</td><td class="num c-t">2,147</td></tr>
+        <tr><td>يونيو 2024</td><td class="num c-m">639</td><td class="num c-h">572</td><td class="num c-j">1,238</td><td class="num c-t">2,449</td></tr>
+        <tr><td>يوليو 2024</td><td class="num c-m">7,292</td><td class="num c-h">1,009</td><td class="num c-j">5,913</td><td class="num c-t" style="font-size:15px">14,215</td></tr>
+        <tr><td>أغسطس 2024</td><td class="num c-m">4,322</td><td class="num c-h">1,590</td><td class="num c-j">4,468</td><td class="num c-t">10,380</td></tr>
+        <tr><td>سبتمبر 2024</td><td class="num c-m">3,523</td><td class="num c-h">1,300</td><td class="num c-j">3,709</td><td class="num c-t">8,532</td></tr>
+        <tr><td>أكتوبر 2024</td><td class="num c-m">2,848</td><td class="num c-h">1,245</td><td class="num c-j">474</td><td class="num c-t">4,567</td></tr>
+        <tr><td>نوفمبر 2024</td><td class="num c-m">3,204</td><td class="num c-h">2,058</td><td class="num c-j">4,045</td><td class="num c-t">9,307</td></tr>
+        <tr><td>ديسمبر 2024</td><td class="num c-m">3,116</td><td class="num c-h">2,505</td><td class="num c-j">2,867</td><td class="num c-t">8,488</td></tr>
+        <tr><td>يناير 2025</td><td class="num c-m">3,260</td><td class="num c-h">2,010</td><td class="num c-j">3,313</td><td class="num c-t">8,583</td></tr>
+        <tr><td>فبراير 2025</td><td class="num c-m">2,235</td><td class="num c-h">1,981</td><td class="num c-j">2,058</td><td class="num c-t">6,274</td></tr>
+        <tr><td>مارس 2025</td><td class="num c-m">1,501</td><td class="num c-h">921</td><td class="num c-j">1,911</td><td class="num c-t">4,333</td></tr>
+        <tr><td>أبريل 2025</td><td class="num c-m">342</td><td class="num c-h">2,639</td><td class="num c-j">4,777</td><td class="num c-t">7,758</td></tr>
+        <tr><td>مايو 2025</td><td class="num c-m">1,548</td><td class="num c-h">2,901</td><td class="num c-j">6,082</td><td class="num c-t">10,531</td></tr>
+        <tr><td>يونيو 2025</td><td class="num c-m">974</td><td class="num c-h">2,293</td><td class="num c-j">3,127</td><td class="num c-t">6,394</td></tr>
+        <tr><td>يوليو 2025</td><td class="num c-m">1,308</td><td class="num c-h">2,762</td><td class="num c-j">3,390</td><td class="num c-t">7,461</td></tr>
+        <tr><td>أغسطس 2025</td><td class="num c-m">1,789</td><td class="num c-h">3,608</td><td class="num c-j">3,645</td><td class="num c-t">9,042</td></tr>
+        <tr><td>سبتمبر 2025</td><td class="num c-m">1,325</td><td class="num c-h">2,955</td><td class="num c-j">686</td><td class="num c-t">4,966</td></tr>
+        <tr><td>أكتوبر 2025</td><td class="num c-m">713</td><td class="num c-h">2,341</td><td class="num c-j">1,405</td><td class="num c-t">4,459</td></tr>
+        <tr><td>نوفمبر 2025</td><td class="num c-m">689</td><td class="num c-h">2,341</td><td class="num c-j">966</td><td class="num c-t">3,996</td></tr>
+        <tr><td>ديسمبر 2025</td><td class="num c-m">713</td><td class="num c-h">2,610</td><td class="num c-j">1,373</td><td class="num c-t">4,696</td></tr>
+        <tr><td>يناير 2026</td><td class="dash num">—</td><td class="num c-h">3,578</td><td class="num c-j">820</td><td class="num c-t">4,398</td></tr>
+        <tr><td>فبراير 2026</td><td class="dash num">—</td><td class="num c-h">1,311</td><td class="num c-j">1,081</td><td class="num c-t">2,392</td></tr>
         <tr class="tfoot-row">
-          <td>الإجمالي الكلي</td>
-          <td class="num">384,966</td>
-          <td class="num">26,145</td>
-          <td class="num">41,342</td>
-          <td class="num">44,530</td>
-          <td class="num">59,495</td>
-          <td class="num">145,367</td>
-          <td class="num">530,333</td>
+          <td>الإجمالي</td>
+          <td class="num c-m">41,342</td>
+          <td class="num c-h">44,530</td>
+          <td class="num c-j">59,495</td>
+          <td class="num c-t">145,367</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <!-- TOP PRODUCTS (MRSOOL) -->
-  <div class="section-title">
-    <div class="section-icon">🥙</div>
-    <h2>أكثر المنتجات مبيعاً — قناة مرسول</h2>
+  <!-- BAR CHART -->
+  <div class="section-head">
+    <div class="dot" style="background:var(--jahez);"></div>
+    <h2>الأداء الشهري — مخطط بصري</h2>
     <div class="section-line"></div>
   </div>
-  <div class="prod-grid">
-    <div class="prod-card">
-      <div class="prod-title">🏆 أفضل 10 منتجات (مرسول)</div>
-      <div class="prod-item"><div class="prod-rank">1</div><div class="prod-name">شباتي جبن وبطاطس عمان</div><div class="prod-sales">1,365 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank">2</div><div class="prod-name">شباتي بيض جبن شبس عمان</div><div class="prod-sales">1,032 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank">3</div><div class="prod-name">شباتي دجاج</div><div class="prod-sales">819 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank">4</div><div class="prod-name">شباتي بيض وجبنة</div><div class="prod-sales">707 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank">5</div><div class="prod-name">شباتي فلافل</div><div class="prod-sales">552 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank">6</div><div class="prod-name">كرك كلاسيك</div><div class="prod-sales">449 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank">7</div><div class="prod-name">بيبسي</div><div class="prod-sales">432 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank">8</div><div class="prod-name">شباتي تونة</div><div class="prod-sales">350 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank">9</div><div class="prod-name">ماونتن ديو</div><div class="prod-sales">327 ر.س</div></div>
-      <div class="prod-item"><div class="prod-rank" style="background:var(--brown)">10</div><div class="prod-name">شباتي جبنة سائلة</div><div class="prod-sales">252 ر.س</div></div>
+  <div class="table-wrap" style="padding:24px;">
+    <div class="bar-section">
+
+      <script>
+        const months = [
+          {m:'مايو 2024',  r:0,     h:0,    j:2147},
+          {m:'يونيو 2024', r:639,   h:572,  j:1238},
+          {m:'يوليو 2024', r:7292,  h:1009, j:5913},
+          {m:'أغسطس 2024',r:4322,  h:1590, j:4468},
+          {m:'سبتمبر 2024',r:3523, h:1300, j:3709},
+          {m:'أكتوبر 2024',r:2848, h:1245, j:474},
+          {m:'نوفمبر 2024',r:3204, h:2058, j:4045},
+          {m:'ديسمبر 2024',r:3116, h:2505, j:2867},
+          {m:'يناير 2025', r:3260, h:2010, j:3313},
+          {m:'فبراير 2025',r:2235, h:1981, j:2058},
+          {m:'مارس 2025',  r:1501, h:921,  j:1911},
+          {m:'أبريل 2025', r:342,  h:2639, j:4777},
+          {m:'مايو 2025',  r:1548, h:2901, j:6082},
+          {m:'يونيو 2025', r:974,  h:2293, j:3127},
+          {m:'يوليو 2025', r:1308, h:2762, j:3390},
+          {m:'أغسطس 2025',r:1789, h:3608, j:3645},
+          {m:'سبتمبر 2025',r:1325, h:2955, j:686},
+          {m:'أكتوبر 2025',r:713,  h:2341, j:1405},
+          {m:'نوفمبر 2025',r:689,  h:2341, j:966},
+          {m:'ديسمبر 2025',r:713,  h:2610, j:1373},
+          {m:'يناير 2026', r:0,    h:3578, j:820},
+          {m:'فبراير 2026',r:0,    h:1311, j:1081},
+        ];
+        const max = Math.max(...months.map(x=>x.r+x.h+x.j));
+        const container = document.currentScript.parentElement;
+        months.forEach(d => {
+          const total = d.r+d.h+d.j;
+          const pct = t => ((t/max)*100).toFixed(1);
+          const row = document.createElement('div');
+          row.className = 'bar-item';
+          row.innerHTML = `
+            <div class="bar-month">${d.m}</div>
+            <div class="bar-track">
+              ${d.r>0?`<div class="bar-seg" style="width:${pct(d.r)}%;background:#00C48C;"><span>${d.r>500?d.r.toLocaleString():''}</span></div>`:''}
+              ${d.h>0?`<div class="bar-seg" style="width:${pct(d.h)}%;background:#E8321C;"><span>${d.h>500?d.h.toLocaleString():''}</span></div>`:''}
+              ${d.j>0?`<div class="bar-seg" style="width:${pct(d.j)}%;background:#F5A623;"><span>${d.j>500?d.j.toLocaleString():''}</span></div>`:''}
+            </div>
+            <div class="bar-total">${total.toLocaleString()}</div>`;
+          container.appendChild(row);
+        });
+        // Legend
+        const leg = document.createElement('div');
+        leg.style = 'display:flex;gap:20px;margin-top:14px;font-size:12px;';
+        leg.innerHTML = `
+          <span style="color:#00C48C">■ مرسول</span>
+          <span style="color:#E8321C">■ هنقر ستيشن</span>
+          <span style="color:#F5A623">■ جاهز</span>`;
+        container.appendChild(leg);
+      </script>
     </div>
-    <div class="prod-card">
-      <div class="prod-title">📊 ملاحظات وتحليل أداء</div>
-      <div style="line-height:2; font-size:13px; color:var(--text);">
-        <p>🔺 <strong>أعلى شهر مبيعاً (نقطة البيع):</strong> أكتوبر 2024 بـ 24,159 ر.س و 1,537 طلب</p><br>
-        <p>🔻 <strong>أدنى شهر (نقطة البيع):</strong> مارس 2025 بـ 5,070 ر.س — انخفاض حاد غير اعتيادي يستدعي المراجعة</p><br>
-        <p>🚀 <strong>أعلى شهر إجمالي:</strong> يوليو 2024 بـ 35,283 ر.س (توصيل قوي جداً)</p><br>
-        <p>📈 <strong>نسبة النمو السنوي 2025:</strong> ارتفاع طفيف +3.9% في نقطة البيع</p><br>
-        <p>💡 <strong>متوسط قيمة الطلب:</strong> 14.7 ر.س في نقطة البيع</p><br>
-        <p>💳 <strong>الدفع الإلكتروني:</strong> 94.3% من عمليات نقطة البيع عبر مدى — نادراً ما يُدفع نقداً</p><br>
-        <p>📦 <strong>منصات التوصيل:</strong> تمثل 27.4% من إجمالي الإيرادات — فرصة نمو</p>
+  </div>
+
+  <!-- HUNGER DETAIL + MRSOOL PRODUCTS -->
+  <div class="section-head">
+    <div class="dot" style="background:var(--hunger);"></div>
+    <h2>تفاصيل هنقر ستيشن ومرسول</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="hunger-detail-grid">
+    <!-- HUNGER STATS -->
+    <div class="detail-card">
+      <div class="detail-title">🔴 إحصائيات هنقر ستيشن (فبراير 2025 – فبراير 2026)</div>
+      <div class="mini-stat"><span class="mini-label">إجمالي الطلبات</span><span class="mini-val num">1,758</span></div>
+      <div class="mini-stat"><span class="mini-label">الطلبات الملغاة</span><span class="mini-val red num">27 طلب (1.5%)</span></div>
+      <div class="mini-stat"><span class="mini-label">الطلبات المنجزة</span><span class="mini-val green num">1,731</span></div>
+      <div class="mini-stat"><span class="mini-label">إجمالي المبيعات</span><span class="mini-val num">65,778 ر.س</span></div>
+      <div class="mini-stat"><span class="mini-label">متوسط قيمة الطلب</span><span class="mini-val num">37.4 ر.س</span></div>
+      <div style="height:1px;background:var(--border);margin:14px 0;"></div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">طريقة الدفع</div>
+      <div class="pay-bar-wrap">
+        <div class="pay-label2">أونلاين</div>
+        <div class="pay-track"><div class="pay-fill" style="width:89.2%;background:var(--hunger);"></div></div>
+        <div class="pay-pct" style="color:var(--hunger)">89.2%</div>
+      </div>
+      <div class="pay-bar-wrap">
+        <div class="pay-label2">نقدي</div>
+        <div class="pay-track"><div class="pay-fill" style="width:10.8%;background:var(--muted);"></div></div>
+        <div class="pay-pct" style="color:var(--muted)">10.8%</div>
+      </div>
+      <div style="height:1px;background:var(--border);margin:14px 0;"></div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">نوع الطلب</div>
+      <div class="pay-bar-wrap">
+        <div class="pay-label2">توصيل</div>
+        <div class="pay-track"><div class="pay-fill" style="width:88%;background:var(--hunger);"></div></div>
+        <div class="pay-pct" style="color:var(--hunger)">88%</div>
+      </div>
+      <div class="pay-bar-wrap">
+        <div class="pay-label2">استلام</div>
+        <div class="pay-track"><div class="pay-fill" style="width:12%;background:var(--muted);"></div></div>
+        <div class="pay-pct" style="color:var(--muted)">12%</div>
+      </div>
+    </div>
+
+    <!-- MRSOOL PRODUCTS -->
+    <div class="detail-card">
+      <div class="detail-title">🟢 أكثر المنتجات مبيعاً — مرسول</div>
+      <div class="prod-list">
+        <div class="prod-row"><div class="prod-rank2">1</div><div class="prod-name2">شباتي جبن وبطاطس عمان</div><div class="prod-bar2"><div class="prod-fill2" style="width:100%"></div></div><div class="prod-sar">1,365</div></div>
+        <div class="prod-row"><div class="prod-rank2">2</div><div class="prod-name2">شباتي بيض جبن شبس عمان</div><div class="prod-bar2"><div class="prod-fill2" style="width:75.6%"></div></div><div class="prod-sar">1,032</div></div>
+        <div class="prod-row"><div class="prod-rank2">3</div><div class="prod-name2">شباتي دجاج</div><div class="prod-bar2"><div class="prod-fill2" style="width:60%"></div></div><div class="prod-sar">819</div></div>
+        <div class="prod-row"><div class="prod-rank2">4</div><div class="prod-name2">شباتي بيض وجبنة</div><div class="prod-bar2"><div class="prod-fill2" style="width:51.8%"></div></div><div class="prod-sar">707</div></div>
+        <div class="prod-row"><div class="prod-rank2">5</div><div class="prod-name2">شباتي فلافل</div><div class="prod-bar2"><div class="prod-fill2" style="width:40.4%"></div></div><div class="prod-sar">552</div></div>
+        <div class="prod-row"><div class="prod-rank2">6</div><div class="prod-name2">كرك كلاسيك</div><div class="prod-bar2"><div class="prod-fill2" style="width:32.9%"></div></div><div class="prod-sar">449</div></div>
+        <div class="prod-row"><div class="prod-rank2">7</div><div class="prod-name2">بيبسي</div><div class="prod-bar2"><div class="prod-fill2" style="width:31.6%"></div></div><div class="prod-sar">432</div></div>
+        <div class="prod-row"><div class="prod-rank2">8</div><div class="prod-name2">شباتي تونة</div><div class="prod-bar2"><div class="prod-fill2" style="width:25.6%"></div></div><div class="prod-sar">350</div></div>
+        <div class="prod-row"><div class="prod-rank2">9</div><div class="prod-name2">ماونتن ديو</div><div class="prod-bar2"><div class="prod-fill2" style="width:23.9%"></div></div><div class="prod-sar">327</div></div>
+        <div class="prod-row"><div class="prod-rank2">10</div><div class="prod-name2">شباتي جبنة سائلة</div><div class="prod-bar2"><div class="prod-fill2" style="width:18.5%"></div></div><div class="prod-sar">252</div></div>
+      </div>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+        <div class="mini-stat"><span class="mini-label">إجمالي مبيعات مرسول</span><span class="mini-val green num">63,101 ر.س</span></div>
+        <div class="mini-stat"><span class="mini-label">متوسط قيمة الطلب</span><span class="mini-val green num">43.25 ر.س</span></div>
       </div>
     </div>
   </div>
 
-  <!-- SUMMARY -->
-  <div class="section-title">
-    <div class="section-icon">✅</div>
-    <h2>الخلاصة التنفيذية</h2>
+  <!-- INSIGHTS -->
+  <div class="section-head">
+    <div class="dot" style="background:var(--mrsool);"></div>
+    <h2>ملاحظات وتحليل الأداء</h2>
     <div class="section-line"></div>
   </div>
-  <div class="note-box" style="background:linear-gradient(135deg,#f0f8f4,#e8f5ee); border-color:var(--green); border-right-color:var(--green);">
-    <strong>الإجمالي الكلي منذ بداية التشغيل (أبريل 2024 – فبراير 2026):</strong><br><br>
-    ✅ إجمالي الإيرادات الكلية: <strong>530,333 ريال سعودي</strong><br>
-    ✅ مبيعات نقطة البيع: <strong>384,966 ر.س (72.6%)</strong> — 26,145 طلب<br>
-    ✅ مبيعات التوصيل الصافية: <strong>145,367 ر.س (27.4%)</strong><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;↳ جاهز: 59,495 ر.س | هنقر ستيشن: 44,530 ر.س | مرسول: 41,342 ر.س<br><br>
-    ⚠️ مارس 2025 يحتاج مراجعة — انخفاض حاد في نقطة البيع (5,070 ر.س فقط)<br>
-    ⚠️ مرسول: تراجع ملحوظ في النصف الثاني من 2025 مقارنة بـ 2024<br>
-    💡 الفرصة: تعزيز التوصيل يمكن أن يرفع الإيرادات بنسبة كبيرة
+  <div class="table-wrap" style="padding:24px; display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+    <div>
+      <div style="color:var(--muted);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">اتجاهات مرسول</div>
+      <div style="font-size:13px;line-height:2;color:var(--text);">
+        🔺 أعلى شهر: <span style="color:var(--mrsool);font-weight:700;">يوليو 2024 — 7,292 ر.س</span><br>
+        📉 تراجع ملحوظ منذ أبريل 2025 (342 ر.س فقط في أبريل!)<br>
+        ❓ غياب كامل في يناير وفبراير 2026<br>
+        💡 الشباتي يهيمن على 60%+ من مبيعات مرسول<br>
+        ⚠️ قد تكون هناك مشكلة في التطبيق أو إيقاف مؤقت
+      </div>
+    </div>
+    <div>
+      <div style="color:var(--muted);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">اتجاهات هنقر وجاهز</div>
+      <div style="font-size:13px;line-height:2;color:var(--text);">
+        🔺 أعلى شهر (هنقر): <span style="color:var(--hunger);font-weight:700;">يناير 2026 — 3,578 ر.س</span><br>
+        🔺 أعلى شهر (جاهز): <span style="color:var(--jahez);font-weight:700;">مايو 2025 — 6,082 ر.س</span><br>
+        📈 هنقر في نمو مستمر منذ بداية تشغيله<br>
+        ⚡ جاهز هو الأعلى صافياً (59,495 ر.س إجمالي)<br>
+        💡 هنقر + جاهز يعوّضان تراجع مرسول في 2025
+      </div>
+    </div>
   </div>
 
 </div>
 
 <div class="footer">
-  تقرير مبيعات مؤسسة رهيف لتقديم الوجبات — <span>صامطة، جازان</span> — مُعدّ من بيانات نظام نقطة البيع (Nugttah) وكشف الحساب البنكي (الراجحي) ومنصات التوصيل
+  تقرير مبيعات التطبيقات — <em>مؤسسة رهيف</em> — البيانات من: تطبيق مرسول، هنقر ستيشن، وكشف الحساب البنكي (الراجحي)
 </div>
 
 </body>
